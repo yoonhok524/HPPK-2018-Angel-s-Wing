@@ -6,6 +6,7 @@ interface AddEditContract {
     }
 
     interface Presenter {
+        abstract fun saveProduct(name: String, price: String)
 
     }
 }

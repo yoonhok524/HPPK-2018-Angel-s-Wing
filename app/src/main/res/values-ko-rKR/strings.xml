@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HPPK-2018-Angel-s-Wing</string>
-    <string name="login">인증</string>
-    <string name="send_sign_in_link">인증 메일 보내기</string>
+    <string name="name">이름</string>
+    <string name="register">등록</string>
+    <string name="lab_part">랩/파트</string>
+    <string name="lab_1">1랩</string>
+    <string name="lab_2">2랩</string>
+    <string name="lab_solution">솔루션랩</string>
+    <string name="invalid_name">유효하지 않은 이름</string>
+    <string name="invalid_email">유효하지 않은 이메일</string>
+    <string name="empty_products">등록된 물품이 존재하지 않습니다.</string>
+    <string name="money_unit">원</string>
+    <string name="product_name">물품 명</string>
+    <string name="invalid_product_name">유효하지 않은 물품 명</string>
+    <string name="price">판매 가격</string>
 </resources>

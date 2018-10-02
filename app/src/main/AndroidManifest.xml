@@ -19,10 +19,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.login.LoginActivity"
-            android:label="@string/login"/>
+        <activity android:name=".ui.signin.SignInActivity"
+            android:label="@string/sign_in">
+        </activity>
         <activity android:name=".ui.addedit.AddEditActivity" />
         <activity android:name=".ui.details.DetailsActivity" />
+
     </application>
 
 </manifest>

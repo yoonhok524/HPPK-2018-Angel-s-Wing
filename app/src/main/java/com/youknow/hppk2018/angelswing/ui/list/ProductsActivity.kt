@@ -2,22 +2,57 @@ package com.youknow.hppk2018.angelswing.ui.list
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.youknow.hppk2018.angelswing.R
-import com.youknow.hppk2018.angelswing.ui.login.LoginActivity
+import com.youknow.hppk2018.angelswing.data.model.Product
+import com.youknow.hppk2018.angelswing.ui.KEY_USER_ID
+import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
+import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
+import kotlinx.android.synthetic.main.activity_products.*
 import org.jetbrains.anko.toast
 
-class ProductsActivity : AppCompatActivity(), ProductsContract.View {
+class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener {
+    private lateinit var mPresenter: ProductsContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_products)
 
-        if (FirebaseAuth.getInstance().currentUser == null) {
-            startActivity(Intent(this, LoginActivity::class.java))
-        } else {
-            toast("Hello ${FirebaseAuth.getInstance().currentUser!!.displayName}")
+        mPresenter = ProductsPresenter(this)
+
+        rvProducts.layoutManager = LinearLayoutManager(this)
+
+        mPresenter.getProducts()
+
+        fabAddProduct.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View) {
+        when(view.id) {
+            R.id.fabAddProduct -> onClickAddProduct()
         }
     }
+
+    override fun showEmptyView(visibility: Int) {
+        tvEmptyProducts.visibility = visibility
+    }
+
+    override fun onProductsLoaded(products: List<Product>) {
+        rvProducts.adapter = ProductsAdapter(this, products)
+    }
+
+    private fun onClickAddProduct() {
+        if (isNeedSignIn()) {
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
+        } else {
+            startActivity(Intent(this, AddEditActivity::class.java))
+        }
+    }
+
+    private fun isNeedSignIn() = FirebaseAuth.getInstance().currentUser == null || !PreferenceManager.getDefaultSharedPreferences(this).contains(KEY_USER_ID)
 }

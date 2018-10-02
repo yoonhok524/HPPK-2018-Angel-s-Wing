@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="labs">
+        <item>@string/lab_1</item>
+        <item>@string/lab_2</item>
+        <item>@string/lab_solution</item>
+    </string-array>
+
+    <string-array name="part1">
+        <item>@string/part_ce</item>
+        <item>@string/part_pid</item>
+        <item>@string/part_pl</item>
+        <item>@string/part_emul</item>
+        <item>@string/part_etc</item>
+    </string-array>
+
+    <string-array name="part2">
+        <item>@string/part_ui</item>
+        <item>@string/part_middleware</item>
+        <item>@string/part_network</item>
+        <item>@string/part_security</item>
+        <item>@string/part_etc</item>
+    </string-array>
+
+    <string-array name="partSolution">
+        <item>@string/part_app</item>
+        <item>@string/part_cloud</item>
+        <item>@string/part_driver</item>
+        <item>@string/part_etc</item>
+    </string-array>
+</resources>
