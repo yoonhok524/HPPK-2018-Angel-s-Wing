@@ -32,9 +32,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-core:16.0.0'
-    implementation 'com.google.firebase:firebase-firestore:16.0.0'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.1'
+    implementation 'com.google.firebase:firebase-core:16.0.3'
+    implementation 'com.google.firebase:firebase-auth:16.0.3'
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
+    implementation 'com.google.firebase:firebase-firestore:17.1.0'
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.4.0"
@@ -45,4 +46,9 @@ dependencies {
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
 }
+
+apply plugin: 'com.google.gms.google-services'

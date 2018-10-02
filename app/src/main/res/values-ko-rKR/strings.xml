@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HPPK-2018-Angel-s-Wing</string>
+    <string name="login">인증</string>
+    <string name="send_sign_in_link">인증 메일 보내기</string>
+</resources>

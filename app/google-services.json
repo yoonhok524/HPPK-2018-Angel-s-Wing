@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "136917003827",
+    "firebase_url": "https://hppk-2018-angel-s-wing.firebaseio.com",
+    "project_id": "hppk-2018-angel-s-wing",
+    "storage_bucket": "hppk-2018-angel-s-wing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136917003827:android:984b8a80a60c1c1e",
+        "android_client_info": {
+          "package_name": "com.youknow.hppk2018.angelswing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136917003827-46qbaugob89sh0hlsshngpugd54o71da.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youknow.hppk2018.angelswing",
+            "certificate_hash": "efa38927c2385d7fca093878913d56e206c7bd31"
+          }
+        },
+        {
+          "client_id": "136917003827-d27r58qcntid3l5hddortio43noapkku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkJcQr6sCxsHhtYaCEir90DWI66AoeOww"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136917003827-d27r58qcntid3l5hddortio43noapkku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
