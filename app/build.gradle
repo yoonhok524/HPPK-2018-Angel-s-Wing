@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.youknow.hppk_2018_angel_s_wing"
+        applicationId "com.youknow.hppk2018.angelswing"
         minSdkVersion 22
         targetSdkVersion 27
         versionCode 1
