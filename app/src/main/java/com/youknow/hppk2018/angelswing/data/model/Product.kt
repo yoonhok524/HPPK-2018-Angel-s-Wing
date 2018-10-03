@@ -7,9 +7,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Product (
         var id: String = "",
-        val name: String = "",
-        val imgFileName: String = "",
-        val price: Int = MINIMUM_TARGET_PRICE,
+        var name: String = "",
+        var price: Int = MINIMUM_TARGET_PRICE,
+        var imgFileName: String = "",
         val onSale: Boolean = true,
         val createdAt: Long = System.currentTimeMillis(),
         val seller: User = User()

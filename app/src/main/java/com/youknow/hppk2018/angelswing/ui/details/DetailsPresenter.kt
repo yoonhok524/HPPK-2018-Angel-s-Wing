@@ -16,6 +16,17 @@ class DetailsPresenter(
         private val disposable: CompositeDisposable = CompositeDisposable()
 ) : DetailsContract.Presenter, AnkoLogger {
 
+    override fun getProduct(productId: String) {
+        disposable.add(productDataSource.getProduct(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view.onProductLoaded(it)
+                }, {
+
+                }))
+    }
+
     override fun deleteProduct(product: Product) {
         view.showProgressBar(View.VISIBLE)
         disposable.add(productDataSource.delete(product)

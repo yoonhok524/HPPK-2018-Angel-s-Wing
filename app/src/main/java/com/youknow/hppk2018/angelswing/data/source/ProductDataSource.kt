@@ -29,6 +29,14 @@ class ProductDataSource : AnkoLogger {
                 }
     }
 
+    fun getProduct(productId: String) = Single.create<Product> { emitter ->
+        mRef.document(productId)
+                .get()
+                .addOnCompleteListener {
+                    emitter.onSuccess(it.result.toObject(Product::class.java)!!)
+                }
+    }
+
     fun saveProduct(product: Product) = Single.create<Boolean> { emitter ->
         mRef.document(product.id)
                 .set(product)
@@ -45,5 +53,6 @@ class ProductDataSource : AnkoLogger {
                     emitter.onSuccess(it.isSuccessful)
                 }
     }
+
 
 }

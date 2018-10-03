@@ -14,6 +14,7 @@ import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
 import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT
+import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT_ID
 import com.youknow.hppk2018.angelswing.ui.details.DetailsActivity
 import com.youknow.hppk2018.angelswing.utils.getFormattedPrice
 import kotlinx.android.synthetic.main.item_product.view.*
@@ -51,7 +52,7 @@ class ProductsAdapter(
 
         holder.itemView.setOnClickListener {
             context.startActivity(Intent(context, DetailsActivity::class.java)
-                    .putExtra(KEY_PRODUCT, product))
+                    .putExtra(KEY_PRODUCT_ID, product.id))
         }
     }
 

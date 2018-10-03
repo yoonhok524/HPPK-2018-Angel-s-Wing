@@ -38,8 +38,8 @@
                     android:layout_height="72dp"
                     android:layout_gravity="bottom"
                     android:padding="8dp"
+                    android:paddingStart="32dp"
                     android:background="@color/grey_truncate"
-                    android:text="Hello World"
                     android:textColor="@color/black"
                     android:textSize="36sp" />
 
