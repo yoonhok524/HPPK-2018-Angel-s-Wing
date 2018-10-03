@@ -1,6 +1,7 @@
 package com.youknow.hppk2018.angelswing.ui.list
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -12,6 +13,9 @@ import com.youknow.hppk2018.angelswing.GlideApp
 import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
+import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT
+import com.youknow.hppk2018.angelswing.ui.details.DetailsActivity
+import com.youknow.hppk2018.angelswing.utils.getFormattedPrice
 import kotlinx.android.synthetic.main.item_product.view.*
 import java.text.NumberFormat
 import java.util.*
@@ -31,20 +35,23 @@ class ProductsAdapter(
 
         holder.itemView.tvProdName.text = product.name
 
-        val format = NumberFormat.getCurrencyInstance(Locale.KOREA)
-        val price = format.format(product.price)
+        val price = getFormattedPrice(product.price)
 
-        holder.itemView.tvPrice.text = price
+        holder.itemView.tvLblPrice.text = price
         holder.itemView.tvSellerName.text = product.seller.name
         holder.itemView.tvSellerLabPart.text = "${product.seller.lab} | ${product.seller.part}"
 
         if (!TextUtils.isEmpty(product.imgFileName)) {
             val imgRef = imageDataSource.getImageRef(product.imgFileName)
-
             GlideApp.with(context)
                     .load(imgRef)
                     .apply(RequestOptions.bitmapTransform(CircleCrop()))
                     .into(holder.itemView.ivProduct)
+        }
+
+        holder.itemView.setOnClickListener {
+            context.startActivity(Intent(context, DetailsActivity::class.java)
+                    .putExtra(KEY_PRODUCT, product))
         }
     }
 

@@ -18,9 +18,9 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 
 
-const val RC_SIGN_IN = 1018
-
 class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
+
+    private val RC_SIGN_IN = 1018
     private lateinit var mPresenter: SignInContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
 
             if (resultCode == Activity.RESULT_OK) {
                 val user = FirebaseAuth.getInstance().currentUser
-                toast("Hello ${user!!.displayName}")
+                mPresenter.isAlreadyExistUser(user!!.email!!)
             } else {
                 error("[HPPK] signIn failed - ${response!!.error}")
             }
@@ -110,7 +110,7 @@ class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
         }
 
         btnRegister.setOnClickListener {
-            mPresenter.register(etName.text.toString(), etEmail.text.toString(), spnLab.selectedItem.toString(), spnPart.selectedItem.toString())
+            mPresenter.register(etName.text.toString(), etHpAccount.text.toString(), spnLab.selectedItem.toString(), spnPart.selectedItem.toString())
         }
     }
 

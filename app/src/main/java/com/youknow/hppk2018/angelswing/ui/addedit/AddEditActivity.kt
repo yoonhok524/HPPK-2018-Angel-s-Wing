@@ -3,7 +3,6 @@ package com.youknow.hppk2018.angelswing.ui.addedit
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -14,7 +13,6 @@ import org.jetbrains.anko.alert
 import org.jetbrains.anko.selector
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 
 
 class AddEditActivity : AppCompatActivity(), AddEditContract.View, View.OnClickListener, AnkoLogger {
@@ -30,7 +28,7 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View, View.OnClickL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addedit_product)
 
-        mPresenter = AddEditPresenter(this, PreferenceManager.getDefaultSharedPreferences(this))
+        mPresenter = AddEditPresenter(this)
 
         btnRegister.setOnClickListener(this)
         ivProduct.setOnClickListener(this)
@@ -59,9 +57,9 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View, View.OnClickL
         when (view.id) {
             R.id.btnRegister -> {
                 if (bytes == null) {
-                    mPresenter.saveProduct(etProductName.text.toString(), etPrice.text.toString())
+                    mPresenter.saveProduct(etProductName.text.toString(), tvPrice.text.toString())
                 } else {
-                    mPresenter.saveProduct(etProductName.text.toString(), etPrice.text.toString(), bytes!!)
+                    mPresenter.saveProduct(etProductName.text.toString(), tvPrice.text.toString(), bytes!!)
                 }
 
             }

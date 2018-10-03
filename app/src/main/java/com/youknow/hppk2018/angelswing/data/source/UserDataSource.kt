@@ -6,6 +6,7 @@ import com.youknow.hppk2018.angelswing.ui.USERS
 import io.reactivex.Single
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import java.lang.Exception
 
 class UserDataSource : AnkoLogger {
     private val mFirestore = FirebaseFirestore.getInstance()
@@ -35,6 +36,20 @@ class UserDataSource : AnkoLogger {
                 .addOnCompleteListener {
                     info("[HPPK] saveUser - complete: $user")
                     emitter.onSuccess(it.isSuccessful)
+                }
+    }
+
+    fun getUser(id: String) = Single.create<User> { emitter ->
+        mFirestore.collection(USERS)
+                .document(id)
+                .get()
+                .addOnCompleteListener {
+                    info("[HPPK] getUser($id) - complete: ${it.isSuccessful}")
+                    if (it.isSuccessful) {
+                        emitter.onSuccess(it.result.toObject(User::class.java)!!)
+                    } else {
+                        emitter.onError(Exception("User Not Found - $id"))
+                    }
                 }
     }
 

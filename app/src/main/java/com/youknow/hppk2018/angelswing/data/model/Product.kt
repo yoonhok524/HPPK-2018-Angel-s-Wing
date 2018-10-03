@@ -1,7 +1,10 @@
 package com.youknow.hppk2018.angelswing.data.model
 
+import android.os.Parcelable
 import com.youknow.hppk2018.angelswing.ui.MINIMUM_TARGET_PRICE
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Product (
         val name: String = "",
         val imgFileName: String = "",
@@ -9,4 +12,4 @@ data class Product (
         val onSale: Boolean = true,
         val createdAt: Long = System.currentTimeMillis(),
         val seller: User = User()
-)
+) : Parcelable

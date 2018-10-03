@@ -3,12 +3,14 @@ package com.youknow.hppk2018.angelswing.ui.addedit
 import android.content.SharedPreferences
 import android.text.TextUtils
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.model.User
 import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
 import com.youknow.hppk2018.angelswing.data.source.ProductDataSource
+import com.youknow.hppk2018.angelswing.data.source.UserDataSource
 import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.MINIMUM_TARGET_PRICE
 import io.reactivex.Single
@@ -20,21 +22,24 @@ import org.jetbrains.anko.info
 
 class AddEditPresenter(
         private val view: AddEditContract.View,
-        pref: SharedPreferences,
+        private val userDataSource: UserDataSource = UserDataSource(),
         private val productDataSource: ProductDataSource = ProductDataSource(),
         private val imageDataSource: ImageDataSource = ImageDataSource(),
         private val disposable: CompositeDisposable = CompositeDisposable()
 ) : AddEditContract.Presenter, AnkoLogger {
 
-    private val seller: User
+    private lateinit var seller: User
 
     init {
-        val jsonUser = pref.getString(KEY_USER, "")
-        if (TextUtils.isEmpty(jsonUser)) {
-            throw IllegalStateException("User need to sign in")
-        }
+        val id = FirebaseAuth.getInstance().currentUser!!.email!!
+        disposable.add(userDataSource.getUser(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    seller = it
+                }, {
 
-        seller = Gson().fromJson(jsonUser, User::class.java)
+                }))
     }
 
     override fun saveProduct(name: String, txtPrice: String) {

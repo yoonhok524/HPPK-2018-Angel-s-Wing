@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/tvSellerName"
             app:layout_constraintStart_toEndOf="@id/ivProduct"
-            app:layout_constraintEnd_toStartOf="@id/tvPrice"/>
+            app:layout_constraintEnd_toStartOf="@id/tvLblPrice"/>
 
     <TextView
             android:id="@+id/tvSellerName"
@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="@id/tvProdName"/>
 
     <TextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvLblPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

@@ -9,4 +9,8 @@
     <color name="black">#000000</color>
     <color name="red">#FF0000</color>
     <color name="grey">#808080</color>
+
+    <color name="grey_truncate">#C0DBDBDB</color>
+    <color name="invisible">#00FFFFFF</color>
+
 </resources>

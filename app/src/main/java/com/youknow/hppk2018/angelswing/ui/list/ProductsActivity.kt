@@ -14,6 +14,9 @@ import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
 import kotlinx.android.synthetic.main.activity_products.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.yesButton
 
 class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener {
     private lateinit var mPresenter: ProductsContract.Presenter
@@ -56,8 +59,13 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
 
     private fun onClickAddProduct() {
         if (isNeedSignIn()) {
-            startActivity(Intent(this, SignInActivity::class.java))
-            finish()
+            alert(R.string.privacy_policy_details, R.string.privacy_policy) {
+                yesButton {
+                    startActivity(Intent(this@ProductsActivity, SignInActivity::class.java))
+                    finish()
+                }
+                noButton {}
+            }.show()
         } else {
             startActivity(Intent(this, AddEditActivity::class.java))
         }

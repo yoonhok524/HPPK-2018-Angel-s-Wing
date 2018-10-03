@@ -11,6 +11,7 @@ interface SignInContract {
 
     interface Presenter {
         fun register(name: String, email: String, lab: String, part: String)
+        fun isAlreadyExistUser(email: String)
         fun unsubscribe()
 
     }
