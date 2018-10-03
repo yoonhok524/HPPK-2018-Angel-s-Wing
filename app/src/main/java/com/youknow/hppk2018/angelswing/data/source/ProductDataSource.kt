@@ -1,6 +1,7 @@
 package com.youknow.hppk2018.angelswing.data.source
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.ui.PRODUCTS
 import io.reactivex.Single
@@ -12,6 +13,7 @@ class ProductDataSource : AnkoLogger {
 
     fun getProducts() = Single.create<List<Product>> { emitter ->
         mFirestore.collection(PRODUCTS)
+                .orderBy("createdAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {

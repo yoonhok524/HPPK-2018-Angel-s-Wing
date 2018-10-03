@@ -6,17 +6,21 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
+import com.youknow.hppk2018.angelswing.GlideApp
 import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
+import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
 import kotlinx.android.synthetic.main.item_product.view.*
 import java.text.NumberFormat
 import java.util.*
 
 class ProductsAdapter(
         private val context: Context,
-        private val products: List<Product> = listOf()
-): RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
+        private val products: List<Product> = listOf(),
+        private val imageDataSource: ImageDataSource = ImageDataSource()
+) : RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
 
@@ -34,10 +38,15 @@ class ProductsAdapter(
         holder.itemView.tvSellerName.text = product.seller.name
         holder.itemView.tvSellerLabPart.text = "${product.seller.lab} | ${product.seller.part}"
 
-        if (!TextUtils.isEmpty(product.photoUrl)) {
-            Glide.with(context).load(product.photoUrl).into(holder.itemView.ivProduct)
+        if (!TextUtils.isEmpty(product.imgFileName)) {
+            val imgRef = imageDataSource.getImageRef(product.imgFileName)
+
+            GlideApp.with(context)
+                    .load(imgRef)
+                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
+                    .into(holder.itemView.ivProduct)
         }
     }
 
-    class ProductHolder(view: View): RecyclerView.ViewHolder(view)
+    class ProductHolder(view: View) : RecyclerView.ViewHolder(view)
 }

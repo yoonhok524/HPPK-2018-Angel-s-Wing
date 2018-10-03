@@ -13,6 +13,7 @@ interface AddEditContract {
 
     interface Presenter {
         fun saveProduct(name: String, price: String)
+        fun saveProduct(name: String, price: String, bytes: ByteArray)
         fun unsubscribe()
 
     }
