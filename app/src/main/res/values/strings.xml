@@ -40,5 +40,5 @@
     <string name="choose_get_image_method">Please select how you want to import the item images.</string>
     <string name="failed_register_product">Failed to register the product</string>
     <string name="invalid_money_more_than_5000">Minimum price must be at least 5,000.</string>
-
+    <string name="product_list">Product List</string>
 </resources>

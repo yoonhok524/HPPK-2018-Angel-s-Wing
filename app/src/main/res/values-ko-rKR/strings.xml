@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HPPK-2018-Angel-s-Wing</string>
+    <string name="app_name">HPPK 2018 사나래</string>
     <string name="name">이름</string>
     <string name="register">등록</string>
     <string name="lab_part">랩/파트</string>
@@ -22,4 +22,5 @@
     <string name="choose_get_image_method">물품 이미지를 가져오는 방법을 선택하세요.</string>
     <string name="failed_register_product">물품 등록에 실패하였습니다.</string>
     <string name="invalid_money_more_than_5000">최소 판매 금액은 5,000원 이상이어야 합니다.</string>
+    <string name="product_list">물품 목록</string>
 </resources>
