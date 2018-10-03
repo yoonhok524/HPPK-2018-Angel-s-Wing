@@ -15,10 +15,16 @@ import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
 import com.youknow.hppk2018.angelswing.utils.getFormattedPrice
 import kotlinx.android.synthetic.main.activity_details.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 
 class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
     private lateinit var mProduct: Product
+
+    private lateinit var mPresenter: DetailsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +32,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        mPresenter = DetailsPresenter(this)
         mProduct = intent.getParcelableExtra(KEY_PRODUCT)
 
         tvProductName.text = mProduct.name
@@ -56,13 +63,39 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            onBackPressed()
-        } else if (item.itemId == R.id.edit) {
-            startActivity(Intent(this, AddEditActivity::class.java)
-                    .putExtra(KEY_PRODUCT, mProduct))
+        when (item.itemId) {
+            android.R.id.home -> onBackPressed()
+            R.id.delete -> showDeletePopup()
+            R.id.edit -> startActivity(Intent(this, AddEditActivity::class.java).putExtra(KEY_PRODUCT, mProduct))
         }
 
         return true
+    }
+
+    private fun showDeletePopup() {
+        alert(R.string.msg_product_delete, R.string.product_delete) {
+            yesButton {
+                mPresenter.deleteProduct(mProduct)
+            }
+            noButton {}
+        }.show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mPresenter.unsubscribe()
+    }
+
+    override fun showProgressBar(visible: Int) {
+        progressBar.visibility = visible
+    }
+
+    override fun terminate() {
+        toast(R.string.msg_delete_success)
+        finish()
+    }
+
+    override fun showError(errMsg: Int) {
+        toast(errMsg)
     }
 }

@@ -14,21 +14,23 @@ import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
 import kotlinx.android.synthetic.main.activity_products.*
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.yesButton
+import org.jetbrains.anko.*
 
-class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener {
+class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener, AnkoLogger {
+
     private lateinit var mPresenter: ProductsContract.Presenter
+    private lateinit var mAdapter: ProductsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
 
         mPresenter = ProductsPresenter(this)
+        mAdapter = ProductsAdapter(this)
 
         rvProducts.layoutManager = LinearLayoutManager(this)
         rvProducts.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        rvProducts.adapter = mAdapter
 
         fabAddProduct.setOnClickListener(this)
     }
@@ -54,7 +56,8 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
     }
 
     override fun onProductsLoaded(products: List<Product>) {
-        rvProducts.adapter = ProductsAdapter(this, products)
+        mAdapter.products = products
+        mAdapter.notifyDataSetChanged()
     }
 
     private fun onClickAddProduct() {

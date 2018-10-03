@@ -9,11 +9,10 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
 class ProductDataSource : AnkoLogger {
-    private val mFirestore = FirebaseFirestore.getInstance()
+    private val mRef = FirebaseFirestore.getInstance().collection(PRODUCTS)
 
     fun getProducts() = Single.create<List<Product>> { emitter ->
-        mFirestore.collection(PRODUCTS)
-                .orderBy("createdAt", Query.Direction.DESCENDING)
+        mRef.orderBy("createdAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -31,11 +30,18 @@ class ProductDataSource : AnkoLogger {
     }
 
     fun saveProduct(product: Product) = Single.create<Boolean> { emitter ->
-        mFirestore.collection(PRODUCTS)
-                .document()
+        mRef.document(product.id)
                 .set(product)
                 .addOnCompleteListener {
                     info("[HPPK] saveProduct - complete: $product")
+                    emitter.onSuccess(it.isSuccessful)
+                }
+    }
+
+    fun delete(product: Product) = Single.create<Boolean> { emitter ->
+        mRef.document(product.id)
+                .delete()
+                .addOnCompleteListener {
                     emitter.onSuccess(it.isSuccessful)
                 }
     }

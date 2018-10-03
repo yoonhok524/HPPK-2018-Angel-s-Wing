@@ -22,6 +22,7 @@ class ProductsPresenter(
                 .subscribe({
                     if (it == null || it.isEmpty()) {
                         view.showEmptyView(View.VISIBLE)
+                        view.onProductsLoaded(listOf())
                     } else {
                         view.showEmptyView(View.GONE)
                         view.onProductsLoaded(it)

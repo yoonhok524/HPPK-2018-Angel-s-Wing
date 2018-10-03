@@ -64,7 +64,7 @@ class AddEditPresenter(
 
         view.showProgressBar(View.VISIBLE)
 
-        val product = Product(name, price = price, seller = seller)
+        val product = Product(name = name, price = price, seller = seller)
         info("[HPPK] saveProduct - $product")
 
         disposable.add(productDataSource.saveProduct(product)
@@ -107,7 +107,7 @@ class AddEditPresenter(
         var imgFileName = "${seller.name}_${System.currentTimeMillis()}.jpg"
         val imageUploader = imageDataSource.saveImage(imgBytes, imgFileName)
 
-        val product = Product(name, price = price, seller = seller, imgFileName = imgFileName)
+        val product = Product(name = name, price = price, seller = seller, imgFileName = imgFileName)
         info("[HPPK] saveProduct - $product")
 
         val productRegister = productDataSource.saveProduct(product)

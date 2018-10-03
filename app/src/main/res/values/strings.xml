@@ -45,4 +45,9 @@
     <string name="edit">Edit</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="privacy_policy_details">By signing in, you agree to the Privacy Policy.</string>
+    <string name="delete">Delete</string>
+    <string name="err_delete_failed">Delete Failed</string>
+    <string name="msg_delete_success">Delete Success</string>
+    <string name="product_delete">Product Delete</string>
+    <string name="msg_product_delete">Do you want to delete the product?</string>
 </resources>

@@ -6,10 +6,16 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Product (
+        var id: String = "",
         val name: String = "",
         val imgFileName: String = "",
         val price: Int = MINIMUM_TARGET_PRICE,
         val onSale: Boolean = true,
         val createdAt: Long = System.currentTimeMillis(),
         val seller: User = User()
-) : Parcelable
+) : Parcelable {
+
+    init {
+        id = "${seller.hpAccount.replace("\\.", "_")}_$createdAt"
+    }
+}

@@ -22,7 +22,7 @@ import java.util.*
 
 class ProductsAdapter(
         private val context: Context,
-        private val products: List<Product> = listOf(),
+        var products: List<Product> = listOf(),
         private val imageDataSource: ImageDataSource = ImageDataSource()
 ) : RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
 
