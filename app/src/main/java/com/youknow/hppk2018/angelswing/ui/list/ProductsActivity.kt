@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +25,7 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
         mPresenter = ProductsPresenter(this)
 
         rvProducts.layoutManager = LinearLayoutManager(this)
+        rvProducts.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
         fabAddProduct.setOnClickListener(this)
     }

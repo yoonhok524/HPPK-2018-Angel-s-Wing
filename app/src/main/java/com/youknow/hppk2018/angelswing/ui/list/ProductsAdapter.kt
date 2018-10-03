@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
 import kotlinx.android.synthetic.main.item_product.view.*
+import java.text.NumberFormat
+import java.util.*
 
 class ProductsAdapter(
         private val context: Context,
@@ -24,7 +26,11 @@ class ProductsAdapter(
         val product = products[position]
 
         holder.itemView.tvProdName.text = product.name
-        holder.itemView.tvPrice.text = "${product.price} ${context.getString(R.string.money_unit)}"
+
+        val format = NumberFormat.getCurrencyInstance(Locale.KOREA)
+        val price = format.format(product.price)
+
+        holder.itemView.tvPrice.text = price
         holder.itemView.tvSellerName.text = product.seller.name
         holder.itemView.tvSellerLabPart.text = "${product.seller.lab} | ${product.seller.part}"
 
