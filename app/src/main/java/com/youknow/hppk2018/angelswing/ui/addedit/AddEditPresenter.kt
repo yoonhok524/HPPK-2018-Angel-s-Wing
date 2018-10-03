@@ -4,10 +4,12 @@ import android.content.SharedPreferences
 import android.text.TextUtils
 import android.view.View
 import com.google.gson.Gson
+import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.model.User
 import com.youknow.hppk2018.angelswing.data.source.ProductDataSource
 import com.youknow.hppk2018.angelswing.ui.KEY_USER
+import com.youknow.hppk2018.angelswing.ui.MINIMUM_TARGET_PRICE
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -41,12 +43,16 @@ class AddEditPresenter(
         view.showInvalidName(View.GONE)
 
         if (TextUtils.isEmpty(txtPrice)) {
-            view.showInvalidPrice(View.VISIBLE)
+            view.showInvalidPrice(View.VISIBLE, R.string.invalid_price)
             return
         }
-        view.showInvalidPrice(View.GONE)
 
         val price = txtPrice.toInt()
+        if (price < MINIMUM_TARGET_PRICE) {
+            view.showInvalidPrice(View.VISIBLE, R.string.invalid_money_more_than_5000)
+            return
+        }
+        view.showInvalidPrice(View.GONE, R.string.invalid_price)
 
         view.showProgressBar(View.VISIBLE)
         val product = Product(name, price = price, seller = seller)

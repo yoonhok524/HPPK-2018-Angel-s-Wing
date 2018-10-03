@@ -8,7 +8,6 @@ import com.youknow.hppk2018.angelswing.R
 import kotlinx.android.synthetic.main.activity_addedit_product.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.selector
-import org.jetbrains.anko.toast
 
 class AddEditActivity : AppCompatActivity(), AddEditContract.View, View.OnClickListener {
 
@@ -52,15 +51,27 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View, View.OnClickL
         tvErrProductName.visibility = visible
     }
 
-    override fun showInvalidPrice(visible: Int) {
+    override fun showInvalidPrice(visible: Int, msg: Int) {
         tvErrPrice.visibility = visible
+        tvErrPrice.setText(msg)
     }
 
     private fun openGetImageDialog() {
         val countries = listOf(getString(R.string.camera), getString(R.string.gallery))
         selector(getString(R.string.choose_get_image_method), countries) { _, i ->
-            toast("${countries[i]} is selected")
+            when (i) {
+                0 -> getImageFromCamera()
+                1 -> getImageFromGallery()
+            }
         }
+    }
+
+    private fun getImageFromCamera() {
+
+    }
+
+    private fun getImageFromGallery() {
+
     }
 
 }

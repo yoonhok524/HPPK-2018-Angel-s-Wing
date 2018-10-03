@@ -1,7 +1,5 @@
 package com.youknow.hppk2018.angelswing.ui.addedit
 
-import com.youknow.hppk2018.angelswing.data.model.User
-
 
 interface AddEditContract {
     interface View {
@@ -9,7 +7,7 @@ interface AddEditContract {
         fun terminate()
         fun failedRegisterProduct()
         fun showInvalidName(visible: Int)
-        fun showInvalidPrice(visible: Int)
+        fun showInvalidPrice(visible: Int, msg: Int)
 
     }
 
