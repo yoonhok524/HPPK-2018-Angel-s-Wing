@@ -16,7 +16,7 @@ import org.jetbrains.anko.info
 
 class AddEditPresenter(
         private val view: AddEditContract.View,
-        private val userDataSource: UserDataSource = UserDataSource(),
+        userDataSource: UserDataSource = UserDataSource(),
         private val productDataSource: ProductDataSource = ProductDataSource(),
         private val imageDataSource: ImageDataSource = ImageDataSource(),
         private val disposable: CompositeDisposable = CompositeDisposable()

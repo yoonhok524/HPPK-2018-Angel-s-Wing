@@ -13,13 +13,10 @@ import com.youknow.hppk2018.angelswing.GlideApp
 import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
-import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT
 import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT_ID
 import com.youknow.hppk2018.angelswing.ui.details.DetailsActivity
 import com.youknow.hppk2018.angelswing.utils.getFormattedPrice
 import kotlinx.android.synthetic.main.item_product.view.*
-import java.text.NumberFormat
-import java.util.*
 
 class ProductsAdapter(
         private val context: Context,

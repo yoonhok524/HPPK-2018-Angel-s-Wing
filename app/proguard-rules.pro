@@ -29,5 +29,6 @@
   public *;
 }
 
-# for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+-keep class com.youknow.hppk2018.angelswing.** {*;}
+
+-keepattributes  Signature,SourceFile,LineNumberTable

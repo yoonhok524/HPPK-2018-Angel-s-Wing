@@ -32,4 +32,9 @@
     <string name="msg_delete_success">삭제 성공</string>
     <string name="product_delete">물품 삭제</string>
     <string name="msg_product_delete">해당 물품을 정말로 삭제하시겠습니까?</string>
+    <string name="sold_out">판매 완료</string>
+    <string name="msg_sold_out">해당 물품이 판매되었습니까? 한번 변경하면 바꿀 수 없습니다.</string>
+    <string name="failed">실패</string>
+    <string name="add_product">새 상품 등록</string>
+    <string name="edit_product">물품 정보 수정</string>
 </resources>

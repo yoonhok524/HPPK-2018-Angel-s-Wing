@@ -25,8 +25,10 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
     private lateinit var mPresenter: DetailsPresenter
     private lateinit var mProduct: Product
+
     private lateinit var mMenuEdit: MenuItem
     private lateinit var mMenuDelete: MenuItem
+    private lateinit var mMenuSoldout: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +69,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
         mMenuEdit = menu.findItem(R.id.edit)
         mMenuDelete = menu.findItem(R.id.delete)
+        mMenuSoldout = menu.findItem(R.id.soldOut)
 
         return true
     }
@@ -76,6 +79,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
             android.R.id.home -> onBackPressed()
             R.id.delete -> showDeletePopup()
             R.id.edit -> startActivity(Intent(this, AddEditActivity::class.java).putExtra(KEY_PRODUCT, mProduct))
+            R.id.soldOut -> showSoldOutPopup()
         }
 
         return true
@@ -107,6 +111,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         if (me != null && me.email == mProduct.seller.id) {
             mMenuEdit.isVisible = true
             mMenuDelete.isVisible = true
+            mMenuSoldout.isVisible = true
         }
     }
 
@@ -114,6 +119,15 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         alert(R.string.msg_product_delete, R.string.product_delete) {
             yesButton {
                 mPresenter.deleteProduct(mProduct)
+            }
+            noButton {}
+        }.show()
+    }
+
+    private fun showSoldOutPopup() {
+        alert(R.string.msg_sold_out, R.string.sold_out) {
+            yesButton {
+                mPresenter.soldOut(mProduct)
             }
             noButton {}
         }.show()

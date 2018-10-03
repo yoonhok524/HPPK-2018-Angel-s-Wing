@@ -12,4 +12,10 @@
             android:title="@string/delete"
             android:visible="false"
             app:showAsAction="never" />
+
+    <item
+            android:id="@+id/soldOut"
+            android:title="@string/sold_out"
+            android:visible="false"
+            app:showAsAction="never" />
 </menu>

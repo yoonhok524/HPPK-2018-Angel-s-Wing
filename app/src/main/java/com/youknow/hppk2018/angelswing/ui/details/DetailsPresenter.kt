@@ -43,6 +43,23 @@ class DetailsPresenter(
                 }))
     }
 
+    override fun soldOut(product: Product) {
+        product.onSale = false
+        disposable.add(productDataSource.saveProduct(product)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it) {
+                        view.terminate()
+                    } else {
+                        view.showError(R.string.failed)
+                    }
+                }, {
+
+                })
+        )
+    }
+
     override fun unsubscribe() {
         info("[HPPK] unsubscribe")
         disposable.clear()

@@ -50,4 +50,9 @@
     <string name="msg_delete_success">Delete Success</string>
     <string name="product_delete">Product Delete</string>
     <string name="msg_product_delete">Do you want to delete the product?</string>
+    <string name="sold_out">Sold Out</string>
+    <string name="msg_sold_out">Was the product sold? Once changed, it can not be changed.</string>
+    <string name="failed">Failed</string>
+    <string name="add_product">Add New Product</string>
+    <string name="edit_product">Edit Product</string>
 </resources>

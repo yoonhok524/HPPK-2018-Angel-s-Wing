@@ -14,6 +14,7 @@ interface DetailsContract {
     interface Presenter {
         fun getProduct(productId: String)
         fun deleteProduct(product: Product)
+        fun soldOut(product: Product)
         fun unsubscribe()
 
     }

@@ -15,7 +15,6 @@ import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.ui.list.ProductsActivity
 import kotlinx.android.synthetic.main.activity_signin.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.toast
 
 
 class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {

@@ -10,7 +10,7 @@ data class Product (
         var name: String = "",
         var price: Int = MINIMUM_TARGET_PRICE,
         var imgFileName: String = "",
-        val onSale: Boolean = true,
+        var onSale: Boolean = true,
         val createdAt: Long = System.currentTimeMillis(),
         val seller: User = User()
 ) : Parcelable {

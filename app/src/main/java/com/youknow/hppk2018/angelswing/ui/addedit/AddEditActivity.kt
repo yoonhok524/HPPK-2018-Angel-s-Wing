@@ -46,6 +46,9 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View, View.OnClickL
             mProduct = intent.getParcelableExtra(KEY_PRODUCT)
             setProduct(mProduct)
             btnRegister.visibility = View.VISIBLE
+            setTitle(R.string.edit_product)
+        } else {
+            setTitle(R.string.add_product)
         }
 
         initView()

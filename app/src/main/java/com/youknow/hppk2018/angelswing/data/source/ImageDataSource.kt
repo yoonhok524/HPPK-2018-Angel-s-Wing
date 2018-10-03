@@ -1,12 +1,8 @@
 package com.youknow.hppk2018.angelswing.data.source
 
-import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.FirebaseStorage
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.OnFailureListener
 import io.reactivex.Single
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
 import org.jetbrains.anko.info
 
 
@@ -14,7 +10,7 @@ import org.jetbrains.anko.info
  * Created by Aaron on 30/06/2017.
  */
 
-class ImageDataSource: AnkoLogger {
+class ImageDataSource : AnkoLogger {
 
     private val BUCKET_URL = "gs://hppk-2018-angel-s-wing.appspot.com"
     private val storage = FirebaseStorage.getInstance(BUCKET_URL)
