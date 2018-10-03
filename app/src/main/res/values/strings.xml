@@ -1,7 +1,7 @@
 <resources>
     <string name="sign_in" translatable="false">Sign In</string>
 
-    <string name="app_name">HPPK 2018 - Angel\'s Wing</string>
+    <string name="app_name">HPPK Angel\'s Wing</string>
     <string name="name">Name</string>
     <string name="email" translatable="false">Email</string>
     <string name="register">Register</string>
