@@ -2,7 +2,6 @@ package com.youknow.hppk2018.angelswing.data.source
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.youknow.hppk2018.angelswing.data.model.Product
-import com.youknow.hppk2018.angelswing.data.model.User
 import com.youknow.hppk2018.angelswing.ui.PRODUCTS
 import io.reactivex.Single
 import org.jetbrains.anko.AnkoLogger
@@ -29,14 +28,14 @@ class ProductDataSource : AnkoLogger {
                 }
     }
 
-//    fun saveUser(user: User) = Single.create<Boolean> { emitter ->
-//        mFirestore.collection(PRODUCTS)
-//                .document(user.id)
-//                .set(user)
-//                .addOnCompleteListener {
-//                    info("[HPPK] saveUser - complete: $user")
-//                    emitter.onSuccess(it.isSuccessful)
-//                }
-//    }
+    fun saveProduct(product: Product) = Single.create<Boolean> { emitter ->
+        mFirestore.collection(PRODUCTS)
+                .document()
+                .set(product)
+                .addOnCompleteListener {
+                    info("[HPPK] saveProduct - complete: $product")
+                    emitter.onSuccess(it.isSuccessful)
+                }
+    }
 
 }

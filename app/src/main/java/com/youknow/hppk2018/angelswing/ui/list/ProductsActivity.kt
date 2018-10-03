@@ -9,11 +9,10 @@ import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
-import com.youknow.hppk2018.angelswing.ui.KEY_USER_ID
+import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
 import kotlinx.android.synthetic.main.activity_products.*
-import org.jetbrains.anko.toast
 
 class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener {
     private lateinit var mPresenter: ProductsContract.Presenter
@@ -26,9 +25,17 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
 
         rvProducts.layoutManager = LinearLayoutManager(this)
 
-        mPresenter.getProducts()
-
         fabAddProduct.setOnClickListener(this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mPresenter.getProducts()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mPresenter.unsubscribe()
     }
 
     override fun onClick(view: View) {
@@ -54,5 +61,5 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
         }
     }
 
-    private fun isNeedSignIn() = FirebaseAuth.getInstance().currentUser == null || !PreferenceManager.getDefaultSharedPreferences(this).contains(KEY_USER_ID)
+    private fun isNeedSignIn() = FirebaseAuth.getInstance().currentUser == null || !PreferenceManager.getDefaultSharedPreferences(this).contains(KEY_USER)
 }

@@ -11,6 +11,7 @@ interface ProductsContract {
 
     interface Presenter {
         fun getProducts()
+        fun unsubscribe()
 
     }
 }

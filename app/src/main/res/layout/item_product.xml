@@ -21,24 +21,36 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:textColor="@color/black"
             android:textSize="16sp"
             tools:text="Product Name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvSeller"
-            app:layout_constraintStart_toEndOf="@id/ivProduct"/>
+            app:layout_constraintBottom_toTopOf="@id/tvSellerName"
+            app:layout_constraintStart_toEndOf="@id/ivProduct"
+            app:layout_constraintEnd_toStartOf="@id/tvPrice"/>
 
     <TextView
-            android:id="@+id/tvSeller"
+            android:id="@+id/tvSellerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp"
             android:textSize="12dp"
-            tools:text="Mr.Seller | 1Lab | PID"
+            tools:text="Mr.Seller"
             app:layout_constraintTop_toBottomOf="@id/tvProdName"
             app:layout_constraintStart_toStartOf="@id/tvProdName"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toTopOf="@id/tvSellerLabPart"/>
+
+    <TextView
+            android:id="@+id/tvSellerLabPart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:textSize="12dp"
+            tools:text="1Lab | PID"
+            app:layout_constraintTop_toBottomOf="@id/tvSellerName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvProdName"/>
 
     <TextView
             android:id="@+id/tvPrice"

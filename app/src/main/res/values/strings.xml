@@ -27,10 +27,17 @@
     <string name="part_driver" translatable="false">Driver</string>
     <string name="invalid_name">invalid name</string>
     <string name="invalid_email">invalid email</string>
+    <string name="invalid_product_name">invalid product name</string>
+    <string name="invalid_price">invalid price</string>
     <string name="empty_products">There are no products.</string>
     <string name="money_unit">won</string>
     <string name="product_name">Product Name</string>
-    <string name="invalid_product_name">invalid product name</string>
     <string name="price">Price</string>
+    <string name="other_seller">Other Seller</string>
+    <string name="seller">Seller</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="choose_get_image_method">Please select how you want to import the item images.</string>
+    <string name="failed_register_product">Failed to register the product</string>
 
 </resources>

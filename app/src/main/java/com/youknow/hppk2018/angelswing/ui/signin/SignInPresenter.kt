@@ -3,9 +3,10 @@ package com.youknow.hppk2018.angelswing.ui.signin
 import android.content.SharedPreferences
 import android.text.TextUtils
 import android.view.View
+import com.google.gson.Gson
 import com.youknow.hppk2018.angelswing.data.model.User
 import com.youknow.hppk2018.angelswing.data.source.UserDataSource
-import com.youknow.hppk2018.angelswing.ui.KEY_USER_ID
+import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import io.reactivex.disposables.CompositeDisposable
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -24,23 +25,23 @@ class SignInPresenter(
             view.showInvalidName(View.VISIBLE)
             return
         }
+        view.showInvalidName(View.GONE)
 
         if (TextUtils.isEmpty(email)) {
             view.showInvalidEmail(View.VISIBLE)
             return
         }
-
-        view.showInvalidName(View.GONE)
         view.showInvalidEmail(View.GONE)
-        view.showProgressBar(View.VISIBLE)
 
-        disposable.add(userDataSource.saveUser(User(email, name, lab, part))
+        view.showProgressBar(View.VISIBLE)
+        val user = User(email, name, lab, part)
+        disposable.add(userDataSource.saveUser(user)
                 .subscribe({
                     view.showProgressBar(View.GONE)
                     view.registerDone(it)
                     if (it) {
                         info("[HPPK] register - success")
-                        pref.edit().putString(KEY_USER_ID, email).apply()
+                        pref.edit().putString(KEY_USER, Gson().toJson(user)).apply()
                     } else {
                         error("[HPPK] register - failed")
                     }

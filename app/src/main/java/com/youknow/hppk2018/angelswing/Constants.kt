@@ -1,6 +1,6 @@
 package com.youknow.hppk2018.angelswing.ui
 
-const val KEY_USER_ID = "com.youknow.hppk2018.angelswing.KEY_USER_ID"
+const val KEY_USER = "com.youknow.hppk2018.angelswing.KEY_USER"
 
 const val USERS = "users"
 const val PRODUCTS = "products"

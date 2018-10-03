@@ -25,7 +25,8 @@ class ProductsAdapter(
 
         holder.itemView.tvProdName.text = product.name
         holder.itemView.tvPrice.text = "${product.price} ${context.getString(R.string.money_unit)}"
-        holder.itemView.tvSeller.text = "${product.seller.name} | ${product.seller.lab} | ${product.seller.part}"
+        holder.itemView.tvSellerName.text = product.seller.name
+        holder.itemView.tvSellerLabPart.text = "${product.seller.lab} | ${product.seller.part}"
 
         if (!TextUtils.isEmpty(product.photoUrl)) {
             Glide.with(context).load(product.photoUrl).into(holder.itemView.ivProduct)
