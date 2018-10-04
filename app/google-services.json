@@ -39,6 +39,14 @@
           }
         },
         {
+          "client_id": "136917003827-q4o32snpi3rcgfb2vg17om4fjoojphdj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youknow.hppk2018.angelswing",
+            "certificate_hash": "668db862096f89985c50fc54d146916fdd9fb5d8"
+          }
+        },
+        {
           "client_id": "136917003827-d27r58qcntid3l5hddortio43noapkku.apps.googleusercontent.com",
           "client_type": 3
         }
