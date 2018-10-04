@@ -4,28 +4,36 @@
         <item>@string/lab_1</item>
         <item>@string/lab_2</item>
         <item>@string/lab_solution</item>
+        <item>@string/group</item>
     </string-array>
 
     <string-array name="part1">
-        <item>@string/part_ce</item>
-        <item>@string/part_pid</item>
-        <item>@string/part_pl</item>
-        <item>@string/part_emul</item>
-        <item>@string/part_etc</item>
+        <item>@string/part_hawoohwa</item>
+        <item>@string/part_leegeunchul</item>
+        <item>@string/part_leejoongmok</item>
+        <item>@string/part_leekeechang</item>
+        <item>@string/part_mohamad</item>
+        <item>@string/part_jungjintae</item>
     </string-array>
 
     <string-array name="part2">
-        <item>@string/part_ui</item>
-        <item>@string/part_middleware</item>
-        <item>@string/part_network</item>
-        <item>@string/part_security</item>
-        <item>@string/part_etc</item>
+        <item>@string/part_chotaegyun</item>
+        <item>@string/part_heonam</item>
+        <item>@string/part_kimbyoungyue</item>
+        <item>@string/part_chaesukyoung</item>
+        <item>@string/part_kimhaengnan</item>
     </string-array>
 
     <string-array name="partSolution">
-        <item>@string/part_app</item>
-        <item>@string/part_cloud</item>
-        <item>@string/part_driver</item>
-        <item>@string/part_etc</item>
+        <item>@string/part_kanghyungjong</item>
+        <item>@string/part_kwonyongchan</item>
+        <item>@string/part_kimsudong</item>
+        <item>@string/part_choijunyoung</item>
+    </string-array>
+
+    <string-array name="group">
+        <item>@string/part_siminbo</item>
+        <item>@string/part_dotaehoi</item>
+        <item>@string/part_system_architect</item>
     </string-array>
 </resources>

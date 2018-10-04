@@ -7,6 +7,29 @@
     <string name="lab_1">1랩</string>
     <string name="lab_2">2랩</string>
     <string name="lab_solution">솔루션랩</string>
+    <string name="group">그룹</string>
+    <string name="part_hawoohwa">파트-하우화</string>
+    <string name="part_leegeunchul">파트-이근철</string>
+    <string name="part_leejoongmok">파트-이중목</string>
+    <string name="part_leekeechang">파트-이기창</string>
+    <string name="part_mohamad">파트-Mohamad</string>
+    <string name="part_jungjintae">파트-정진태</string>
+
+    <string name="part_chotaegyun">파트-조태균</string>
+    <string name="part_heonam">파트-허남</string>
+    <string name="part_kimbyoungyue">파트-김병유</string>
+    <string name="part_chaesukyoung">파트-채수경</string>
+    <string name="part_kimhaengnan">파트-김행난</string>
+
+    <string name="part_kanghyungjong">파트-강형종</string>
+    <string name="part_kwonyongchan">파트-권용찬(Cloud)</string>
+    <string name="part_kimsudong">파트-김수동</string>
+    <string name="part_choijunyoung">파트-최준영</string>
+
+    <string name="part_siminbo">파트-심인보</string>
+    <string name="part_dotaehoi">파트-도대회</string>
+    <string name="part_system_architect">파트-System Architect</string>
+
     <string name="invalid_name">유효하지 않은 이름</string>
     <string name="invalid_email">유효하지 않은 이메일</string>
     <string name="invalid_product_name">유효하지 않은 물품 명</string>

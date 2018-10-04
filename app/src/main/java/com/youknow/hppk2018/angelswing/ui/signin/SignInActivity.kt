@@ -100,7 +100,8 @@ class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
                 val partResId = when (position) {
                     0 -> R.array.part1
                     1 -> R.array.part2
-                    else -> R.array.partSolution
+                    2 -> R.array.partSolution
+                    else -> R.array.group
                 }
 
                 val adapterPart = ArrayAdapter.createFromResource(this@SignInActivity, partResId, R.layout.spinner_item_black)

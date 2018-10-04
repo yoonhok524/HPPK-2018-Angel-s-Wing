@@ -10,21 +10,30 @@
     <string name="lab_1">Lab 1</string>
     <string name="lab_2">Lab 2</string>
     <string name="lab_solution">Lab Solution</string>
+    <string name="group">Group</string>
 
-    <string name="part_etc" translatable="false">Etc.</string>
-    <string name="part_ce" translatable="false">CE</string>
-    <string name="part_emul" translatable="false">Emul</string>
-    <string name="part_pid" translatable="false">PID</string>
-    <string name="part_pl" translatable="false">PL</string>
+    <string name="part_hawoohwa">Part-Woohwa Ha</string>
+    <string name="part_leegeunchul">Part-Geunchul Lee</string>
+    <string name="part_leejoongmok">Part-Joongmok Lee</string>
+    <string name="part_leekeechang">Part-Keechang Lee</string>
+    <string name="part_mohamad">Part-Mohamad</string>
+    <string name="part_jungjintae">Part-Jintae Jung</string>
 
-    <string name="part_ui" translatable="false">UI</string>
-    <string name="part_middleware" translatable="false">Middleware</string>
-    <string name="part_security" translatable="false">Security</string>
-    <string name="part_network" translatable="false">Network</string>
+    <string name="part_chotaegyun">Part-Taegyun Cho</string>
+    <string name="part_heonam">Part-Nam Heo</string>
+    <string name="part_kimbyoungyue">Part-Byoungyue Kim</string>
+    <string name="part_chaesukyoung">Part-Sukyoung Chae</string>
+    <string name="part_kimhaengnan">Part-Haengnan Kim</string>
 
-    <string name="part_app" translatable="false">Application</string>
-    <string name="part_cloud" translatable="false">Cloud</string>
-    <string name="part_driver" translatable="false">Driver</string>
+    <string name="part_kanghyungjong">Part-Hyungjong Kang</string>
+    <string name="part_kwonyongchan">Part-Yongchan Kwon (Cloud)</string>
+    <string name="part_kimsudong">Part-Sudong Kim</string>
+    <string name="part_choijunyoung">Part-Junyoung Choi</string>
+
+    <string name="part_siminbo">Part-Inbo Shim</string>
+    <string name="part_dotaehoi">Part-Taehoi Do</string>
+    <string name="part_system_architect">Part-System Architect</string>
+
     <string name="invalid_name">invalid name</string>
     <string name="invalid_email">invalid email</string>
     <string name="invalid_product_name">invalid product name</string>
