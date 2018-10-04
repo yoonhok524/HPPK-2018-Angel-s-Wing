@@ -46,7 +46,11 @@ class UserDataSource : AnkoLogger {
                 .addOnCompleteListener {
                     info("[HPPK] getUser($id) - complete: ${it.isSuccessful}")
                     if (it.isSuccessful) {
-                        emitter.onSuccess(it.result.toObject(User::class.java)!!)
+                        if (it.result != null && it.result.data != null) {
+                            emitter.onSuccess(it.result.toObject(User::class.java)!!)
+                        } else {
+                            emitter.onError(Exception("User Not Found - $id"))
+                        }
                     } else {
                         emitter.onError(Exception("User Not Found - $id"))
                     }

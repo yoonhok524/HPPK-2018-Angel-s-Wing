@@ -54,6 +54,7 @@ class SignInPresenter(
     }
 
     override fun isAlreadyExistUser(id: String) {
+        info("[HPPK] isAlreadyExistUser: $id")
         disposable.add(userDataSource.getUser(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -63,7 +64,7 @@ class SignInPresenter(
                         view.registerDone(true)
                     }
                 }, {
-
+                    it.printStackTrace()
                 }))
     }
 

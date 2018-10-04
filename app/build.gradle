@@ -12,18 +12,27 @@ android {
         applicationId "com.youknow.hppk2018.angelswing"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 3
-        versionName "1.0.1"
+        versionCode 5
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     androidExtensions {
         experimental = true
     }
+    signingConfigs {
+        release {
+            storeFile file(SIGNED_STORE_FILE)
+            storePassword SIGNED_STORE_PASSWORD
+            keyAlias SIGNED_KEY_ALIAS
+            keyPassword SIGNED_KEY_PASSWORD
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }

@@ -16,6 +16,7 @@ import com.youknow.hppk2018.angelswing.ui.list.ProductsActivity
 import kotlinx.android.synthetic.main.activity_signin.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
+import org.jetbrains.anko.info
 
 
 class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
@@ -33,8 +34,10 @@ class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
 
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
+            info("[HPPK] onCreate - user: ${user.email}, ${user.displayName}")
             etName.setText(user.displayName)
         } else {
+            info("[HPPK] onCreate - startSignInFlow")
             startSignInFlow()
         }
 
@@ -48,9 +51,11 @@ class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
 
             if (resultCode == Activity.RESULT_OK) {
                 val user = FirebaseAuth.getInstance().currentUser
+                info("[HPPK] onActivityResult - ${user!!.email}")
                 mPresenter.isAlreadyExistUser(user!!.email!!)
             } else {
                 error("[HPPK] signIn failed - ${response!!.error}")
+                response!!.error!!.printStackTrace()
             }
         }
     }
@@ -111,6 +116,7 @@ class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
         }
 
         btnRegister.setOnClickListener {
+            info("[HPPK] btnRegister on clicked - email: ${FirebaseAuth.getInstance().currentUser!!.email}")
             mPresenter.register(etName.text.toString(), etHpAccount.text.toString(), spnLab.selectedItem.toString(), spnPart.selectedItem.toString())
         }
     }

@@ -32,3 +32,5 @@
 -keep class com.youknow.hppk2018.angelswing.** {*;}
 
 -keepattributes  Signature,SourceFile,LineNumberTable
+
+-keep class com.firebase.** { *; }
