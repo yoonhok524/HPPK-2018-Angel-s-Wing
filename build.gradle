@@ -2,7 +2,7 @@
 
 buildscript {
     ext.kotlin_version = '1.2.71'
-    ext.anko_version='0.10.6'
+    ext.anko_version = '0.10.6'
 
     repositories {
         google()
@@ -28,6 +28,7 @@ allprojects {
         maven {
             url 'https://maven.google.com/'
         }
+        maven { url 'https://jitpack.io' }
     }
 }
 

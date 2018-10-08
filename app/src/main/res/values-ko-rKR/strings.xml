@@ -61,4 +61,5 @@
     <string name="add_product">새 상품 등록</string>
     <string name="edit_product">물품 정보 수정</string>
     <string name="err_product_not_exist">존재하지 않는 물품입니다.</string>
+    <string name="statistics">통계</string>
 </resources>

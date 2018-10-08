@@ -6,6 +6,8 @@ import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.youknow.hppk2018.angelswing.R
@@ -13,6 +15,7 @@ import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
+import com.youknow.hppk2018.angelswing.ui.statistics.StatisticsActivity
 import kotlinx.android.synthetic.main.activity_products.*
 import org.jetbrains.anko.*
 
@@ -33,6 +36,18 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
         rvProducts.adapter = mAdapter
 
         fabAddProduct.setOnClickListener(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.statistics -> startActivity(Intent(this, StatisticsActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onStart() {

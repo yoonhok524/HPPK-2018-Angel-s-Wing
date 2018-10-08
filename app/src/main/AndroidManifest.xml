@@ -35,6 +35,10 @@
                 android:parentActivityName=".ui.list.ProductsActivity"
                 android:theme="@style/NoActionBar"/>
 
+        <activity
+            android:parentActivityName=".ui.list.ProductsActivity"
+            android:name=".ui.statistics.StatisticsActivity"/>
+
     </application>
 
 </manifest>
