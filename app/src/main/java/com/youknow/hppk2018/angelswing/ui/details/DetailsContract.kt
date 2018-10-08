@@ -7,7 +7,7 @@ interface DetailsContract {
         fun onProductLoaded(product: Product)
         fun showProgressBar(visible: Int)
         fun terminate()
-        fun showError(errMsg: Int)
+        fun showMessage(errMsg: Int)
 
     }
 

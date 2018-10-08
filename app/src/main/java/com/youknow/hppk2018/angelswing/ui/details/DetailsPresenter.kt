@@ -23,7 +23,8 @@ class DetailsPresenter(
                 .subscribe({
                     view.onProductLoaded(it)
                 }, {
-
+                    view.showMessage(R.string.err_product_not_exist)
+                    view.terminate()
                 }))
     }
 
@@ -34,9 +35,10 @@ class DetailsPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (it) {
+                        view.showMessage(R.string.msg_delete_success)
                         view.terminate()
                     } else {
-                        view.showError(R.string.err_delete_failed)
+                        view.showMessage(R.string.err_delete_failed)
                     }
                 }, {
 
@@ -52,7 +54,7 @@ class DetailsPresenter(
                     if (it) {
                         view.terminate()
                     } else {
-                        view.showError(R.string.failed)
+                        view.showMessage(R.string.failed)
                     }
                 }, {
 

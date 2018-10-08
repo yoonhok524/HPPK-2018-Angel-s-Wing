@@ -33,7 +33,11 @@ class ProductDataSource : AnkoLogger {
         mRef.document(productId)
                 .get()
                 .addOnCompleteListener {
-                    emitter.onSuccess(it.result.toObject(Product::class.java)!!)
+                    if (!it.isSuccessful || it.result == null) {
+                        emitter.onError(Exception("$productId is not exist"))
+                    } else {
+                        emitter.onSuccess(it.result.toObject(Product::class.java)!!)
+                    }
                 }
     }
 

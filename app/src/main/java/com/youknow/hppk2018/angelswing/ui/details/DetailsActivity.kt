@@ -56,11 +56,10 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     }
 
     override fun terminate() {
-        toast(R.string.msg_delete_success)
         finish()
     }
 
-    override fun showError(errMsg: Int) {
+    override fun showMessage(errMsg: Int) {
         toast(errMsg)
     }
 
