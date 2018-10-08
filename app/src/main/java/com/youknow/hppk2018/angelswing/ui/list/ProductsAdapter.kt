@@ -45,6 +45,8 @@ class ProductsAdapter(
                     .load(imgRef)
                     .apply(RequestOptions.bitmapTransform(CircleCrop()))
                     .into(holder.itemView.ivProduct)
+        } else {
+            holder.itemView.ivProduct.setImageResource(R.drawable.ic_unknown)
         }
 
         holder.itemView.setOnClickListener {
