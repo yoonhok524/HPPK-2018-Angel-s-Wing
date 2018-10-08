@@ -16,10 +16,12 @@ class ProductsPresenter(
 ): ProductsContract.Presenter, AnkoLogger {
 
     override fun getProducts() {
+        view.showProgressBar(View.VISIBLE)
         disposable.add(productDataSource.getProducts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    view.showProgressBar(View.GONE)
                     if (it == null || it.isEmpty()) {
                         view.showEmptyView(View.VISIBLE)
                         view.onProductsLoaded(listOf())
@@ -28,6 +30,7 @@ class ProductsPresenter(
                         view.onProductsLoaded(it)
                     }
                 }, {
+                    view.showProgressBar(View.GONE)
                     error("[HPPK] getProducts - failed: ${it.message}")
                     it.printStackTrace()
                 }))

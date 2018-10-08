@@ -17,10 +17,9 @@ import kotlinx.android.synthetic.main.activity_products.*
 import org.jetbrains.anko.*
 
 class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener, AnkoLogger {
-
     private lateinit var mPresenter: ProductsContract.Presenter
-    private lateinit var mAdapter: ProductsAdapter
 
+    private lateinit var mAdapter: ProductsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
@@ -50,6 +49,10 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
         when(view.id) {
             R.id.fabAddProduct -> onClickAddProduct()
         }
+    }
+
+    override fun showProgressBar(visible: Int) {
+        progressBar.visibility = visible
     }
 
     override fun showEmptyView(visibility: Int) {
