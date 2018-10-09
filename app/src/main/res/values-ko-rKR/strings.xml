@@ -68,4 +68,5 @@
     <string name="statistics_top3">통계 - Top 3</string>
     <string name="number_of_users">관심 물품 %1$d</string>
     <string name="number_of_employees_interested_in_this_product">임직원 %1$d명이 이 물품에 관심을 갖고 있습니다.</string>
+    <string name="my_favorites">관심 물품</string>
 </resources>

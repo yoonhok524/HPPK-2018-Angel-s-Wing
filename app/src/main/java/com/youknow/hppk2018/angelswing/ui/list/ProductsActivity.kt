@@ -20,9 +20,11 @@ import kotlinx.android.synthetic.main.activity_products.*
 import org.jetbrains.anko.*
 
 class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener, AnkoLogger {
-    private lateinit var mPresenter: ProductsContract.Presenter
 
+    private lateinit var mPresenter: ProductsContract.Presenter
     private lateinit var mAdapter: ProductsAdapter
+    private lateinit var mMenuFavorites: MenuItem
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
@@ -38,14 +40,16 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
         fabAddProduct.setOnClickListener(this)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
+        mMenuFavorites = menu.findItem(R.id.favorites)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.statistics -> startActivity(Intent(this, StatisticsActivity::class.java))
+            R.id.favorites-> mPresenter.getMyFavoriteProducts()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -77,6 +81,13 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
     override fun onProductsLoaded(products: List<Product>) {
         mAdapter.products = products
         mAdapter.notifyDataSetChanged()
+    }
+
+    private fun initOptionsMenu() {
+        val me = FirebaseAuth.getInstance().currentUser
+        if (me != null) {
+            mMenuFavorites.isVisible = true
+        }
     }
 
     private fun onClickAddProduct() {

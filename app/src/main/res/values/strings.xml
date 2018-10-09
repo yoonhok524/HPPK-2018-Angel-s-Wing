@@ -72,4 +72,5 @@
     <string name="statistics_top3">Statistics - Top 3</string>
     <string name="number_of_users">Favorites %1$d</string>
     <string name="number_of_employees_interested_in_this_product">%1$d employees are interested in this product.</string>
+    <string name="my_favorites">My Favorites</string>
 </resources>
