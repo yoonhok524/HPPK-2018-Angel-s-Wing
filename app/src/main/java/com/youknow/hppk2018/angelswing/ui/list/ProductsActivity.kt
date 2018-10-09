@@ -29,14 +29,14 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
         setTitle(R.string.product_list)
 
         startActivity(Intent(this, StatisticsActivity::class.java))
-//        mPresenter = ProductsPresenter(this)
-//        mAdapter = ProductsAdapter(this)
-//
-//        rvProducts.layoutManager = LinearLayoutManager(this)
-//        rvProducts.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
-//        rvProducts.adapter = mAdapter
-//
-//        fabAddProduct.setOnClickListener(this)
+        mPresenter = ProductsPresenter(this)
+        mAdapter = ProductsAdapter(this)
+
+        rvProducts.layoutManager = LinearLayoutManager(this)
+        rvProducts.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        rvProducts.adapter = mAdapter
+
+        fabAddProduct.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,12 +53,12 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
 
     override fun onStart() {
         super.onStart()
-//        mPresenter.getChartData()
+        mPresenter.getProducts()
     }
 
     override fun onStop() {
         super.onStop()
-//        mPresenter.unsubscribe()
+        mPresenter.unsubscribe()
     }
 
     override fun onClick(view: View) {
