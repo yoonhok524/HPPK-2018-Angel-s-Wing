@@ -1,33 +1,16 @@
 package com.youknow.hppk2018.angelswing.data.source
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.model.User
+import com.youknow.hppk2018.angelswing.ui.FAVORITES
 import com.youknow.hppk2018.angelswing.ui.USERS
 import io.reactivex.Single
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import java.lang.Exception
 
 class UserDataSource : AnkoLogger {
     private val mFirestore = FirebaseFirestore.getInstance()
-
-//    fun getPlayerByName(region: String, playerName: String): Single<Player> {
-//        Log.d(TAG, "[BS] getPlayerByName(firebase)")
-//        return Single.create<Player> { emitter ->
-//            mFirestore.collection(REGIONS)
-//                    .document(region)
-//                    .collection(PLAYERS)
-//                    .whereEqualTo("playerName", playerName)
-//                    .get()
-//                    .addOnCompleteListener {
-//                        if (it.isSuccessful && !it.result.isEmpty) {
-//                            emitter.onSuccess(it.result.documents[0].toObject(Player::class.java))
-//                        } else {
-//                            emitter.onError(PlayerNotExistException())
-//                        }
-//                    }
-//        }
-//    }
 
     fun saveUser(user: User) = Single.create<Boolean> { emitter ->
         mFirestore.collection(USERS)
@@ -53,6 +36,58 @@ class UserDataSource : AnkoLogger {
                         }
                     } else {
                         emitter.onError(Exception("User Not Found - $id"))
+                    }
+                }
+    }
+
+    fun getFavorites(id: String) = Single.create<List<Product>> { emitter ->
+        mFirestore.collection(USERS)
+                .document(id)
+                .collection(FAVORITES)
+                .get()
+                .addOnCompleteListener {
+                    info("[HPPK] getFavoriteNumber($id) - complete: ${it.isSuccessful}")
+                    if (it.isSuccessful) {
+                        if (it.result != null && it.result.documents != null) {
+                            emitter.onSuccess(it.result.toObjects(Product::class.java))
+                        } else {
+                            emitter.onError(Exception("Favorites Not Found - $id"))
+                        }
+                    } else {
+                        emitter.onError(Exception("Favorites Not Found - $id"))
+                        if (it.exception != null) {
+                            it.exception!!.printStackTrace()
+                        }
+                    }
+                }
+    }
+
+    fun addFavoriteProduct(userId: String, product: Product) = Single.create<Boolean> { emitter ->
+        mFirestore.collection(USERS)
+                .document(userId)
+                .collection(FAVORITES)
+                .document(product.id)
+                .set(product)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        emitter.onSuccess(true)
+                    } else {
+                        emitter.onError(Exception("addFavoriteProduct failed"))
+                    }
+                }
+    }
+
+    fun removeFavoriteProduct(userId: String, product: Product) = Single.create<Boolean> { emitter ->
+        mFirestore.collection(USERS)
+                .document(userId)
+                .collection(FAVORITES)
+                .document(product.id)
+                .delete()
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        emitter.onSuccess(true)
+                    } else {
+                        emitter.onError(Exception("removeFavoriteProduct failed"))
                     }
                 }
     }

@@ -70,4 +70,6 @@
     <string name="top3_most_donate">Top 3 Part - Donation King</string>
     <string name="msg_will_be_open_event_day">This will be opened on event day.</string>
     <string name="statistics_top3">Statistics - Top 3</string>
+    <string name="number_of_users">Favorites %1$d</string>
+    <string name="number_of_employees_interested_in_this_product">%1$d employees are interested in this product.</string>
 </resources>

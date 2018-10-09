@@ -54,71 +54,98 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-                android:id="@+id/tvLblPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="40dp"
-                android:text="@string/price"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-                android:id="@+id/tvPrice"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
-                android:textAlignment="textEnd"
-                android:textColor="@color/black"
-                tools:text="10,000"
-                app:layout_constraintTop_toBottomOf="@id/tvLblPrice"
-                app:layout_constraintEnd_toEndOf="parent" />
+            <TextView
+                    android:id="@+id/tvLblPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="40dp"
+                    android:text="@string/price"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-                android:id="@+id/tvSeller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="40dp"
-                android:text="@string/seller"
-                app:layout_constraintTop_toBottomOf="@id/tvPrice"
-                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/black"
+                    tools:text="10,000"
+                    app:layout_constraintTop_toBottomOf="@id/tvLblPrice"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-                android:id="@+id/tvSellerName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="40dp"
-                tools:text="Seller Name"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/tvSeller"
-                app:layout_constraintEnd_toEndOf="parent" />
+            <TextView
+                    android:id="@+id/tvSeller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="40dp"
+                    android:text="@string/seller"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrice"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-                android:id="@+id/tvSellerLabPart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="40dp"
-                tools:text="Lab1 | PID"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/tvSellerName"
-                app:layout_constraintEnd_toEndOf="parent" />
+            <TextView
+                    android:id="@+id/tvSellerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="40dp"
+                    tools:text="Seller Name"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tvSeller"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+            <TextView
+                    android:id="@+id/tvSellerLabPart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="40dp"
+                    tools:text="Lab1 | PID"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tvSellerName"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            <CheckBox
+                    android:id="@+id/chkFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_margin="40dp"
+                    android:button="@drawable/favorite_checkbox"
+                    app:layout_constraintTop_toBottomOf="@id/tvSellerLabPart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvFavoriteNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="@string/number_of_users"
+                    app:layout_constraintTop_toBottomOf="@id/chkFavorite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>

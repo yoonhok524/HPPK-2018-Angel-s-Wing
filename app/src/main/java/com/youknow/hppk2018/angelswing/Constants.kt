@@ -6,6 +6,7 @@ const val KEY_PRODUCT_ID = "com.youknow.hppk2018.angelswing.KEY_PRODUCT_ID"
 
 const val USERS = "users"
 const val PRODUCTS = "products"
+const val FAVORITES = "favorites"
 
 const val MINIMUM_TARGET_PRICE = 5000
 const val MODE_NEW = 0
