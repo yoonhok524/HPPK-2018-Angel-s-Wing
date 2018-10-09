@@ -28,7 +28,6 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
         setContentView(R.layout.activity_products)
         setTitle(R.string.product_list)
 
-        startActivity(Intent(this, StatisticsActivity::class.java))
         mPresenter = ProductsPresenter(this)
         mAdapter = ProductsAdapter(this)
 
