@@ -14,6 +14,7 @@ import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
+import com.youknow.hppk2018.angelswing.ui.list.favorites.FavoritesActivity
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
 import com.youknow.hppk2018.angelswing.ui.statistics.StatisticsActivity
 import kotlinx.android.synthetic.main.activity_products.*
@@ -49,7 +50,7 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.statistics -> startActivity(Intent(this, StatisticsActivity::class.java))
-            R.id.favorites-> mPresenter.getMyFavoriteProducts()
+            R.id.favorites-> startActivity(Intent(this, FavoritesActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
@@ -81,6 +82,7 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
     override fun onProductsLoaded(products: List<Product>) {
         mAdapter.products = products
         mAdapter.notifyDataSetChanged()
+        initOptionsMenu()
     }
 
     private fun initOptionsMenu() {

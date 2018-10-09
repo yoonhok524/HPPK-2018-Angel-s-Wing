@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.youknow.hppk2018.angelswing">
+        package="com.youknow.hppk2018.angelswing">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+            android:name="android.hardware.camera"
+            android:required="true" />
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.list.ProductsActivity"
+        <activity
+                android:name=".ui.list.ProductsActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,21 +27,28 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.signin.SignInActivity"
-            android:label="@string/sign_in">
-        </activity>
-
-        <activity android:name=".ui.addedit.AddEditActivity"
-                android:parentActivityName=".ui.list.ProductsActivity"/>
-
-        <activity android:name=".ui.details.DetailsActivity"
-                android:parentActivityName=".ui.list.ProductsActivity"
-                android:theme="@style/NoActionBar"/>
+        <activity
+                android:name=".ui.signin.SignInActivity"
+                android:label="@string/sign_in"></activity>
 
         <activity
-            android:parentActivityName=".ui.list.ProductsActivity"
-            android:name=".ui.statistics.StatisticsActivity"
-                android:label="@string/statistics_top3"/>
+                android:name=".ui.addedit.AddEditActivity"
+                android:parentActivityName=".ui.list.ProductsActivity" />
+
+        <activity
+                android:name=".ui.details.DetailsActivity"
+                android:parentActivityName=".ui.list.ProductsActivity"
+                android:theme="@style/NoActionBar" />
+
+        <activity
+                android:parentActivityName=".ui.list.ProductsActivity"
+                android:name=".ui.statistics.StatisticsActivity"
+                android:label="@string/statistics_top3" />
+
+        <activity
+                android:parentActivityName=".ui.list.ProductsActivity"
+                android:name="com.youknow.hppk2018.angelswing.ui.list.favorites.FavoritesActivity"
+                android:label="@string/my_favorites" />
 
     </application>
 
