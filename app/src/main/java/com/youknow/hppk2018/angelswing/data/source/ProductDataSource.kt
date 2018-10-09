@@ -24,7 +24,7 @@ class ProductDataSource : AnkoLogger {
                     } else if (it.exception != null) {
                         emitter.onError(it.exception!!)
                     } else {
-                        emitter.onError(Exception("getProducts failed"))
+                        emitter.onError(Exception("getChartData failed"))
                     }
                 }
     }

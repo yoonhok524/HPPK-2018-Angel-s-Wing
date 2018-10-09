@@ -31,7 +31,7 @@ class ProductsPresenter(
                     }
                 }, {
                     view.showProgressBar(View.GONE)
-                    error("[HPPK] getProducts - failed: ${it.message}")
+                    error("[HPPK] getChartData - failed: ${it.message}")
                     it.printStackTrace()
                 }))
     }

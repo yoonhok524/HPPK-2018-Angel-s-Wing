@@ -37,7 +37,8 @@
 
         <activity
             android:parentActivityName=".ui.list.ProductsActivity"
-            android:name=".ui.statistics.StatisticsActivity"/>
+            android:name=".ui.statistics.StatisticsActivity"
+                android:label="@string/statistics_top3"/>
 
     </application>
 

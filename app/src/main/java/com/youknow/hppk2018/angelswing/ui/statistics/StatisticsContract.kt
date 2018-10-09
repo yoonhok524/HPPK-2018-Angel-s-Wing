@@ -5,13 +5,15 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter
 
 interface StatisticsContract {
     interface View {
-        fun onChartLoaded(barData: BarData?, param: IAxisValueFormatter)
+        fun onChartLoaded(barData: BarData?, xAxisFormatter: IAxisValueFormatter)
+        fun onDonationKingLoaded(s: String)
+        fun onSalesKingLoaded(s: String)
 
     }
 
     interface Presenter {
         fun unsubscribe()
-        fun getProducts()
+        fun getChartData()
 
     }
 }

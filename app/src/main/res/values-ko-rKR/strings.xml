@@ -62,4 +62,8 @@
     <string name="edit_product">물품 정보 수정</string>
     <string name="err_product_not_exist">존재하지 않는 물품입니다.</string>
     <string name="statistics">통계</string>
+    <string name="top3_most_sales">Top 3 - 판매왕</string>
+    <string name="top3_most_donate">Top 3 - 기부왕</string>
+    <string name="msg_will_be_open_event_day">이벤트 개시 후 이용 가능한 정보입니다.</string>
+    <string name="statistics_top3">통계 - Top 3</string>
 </resources>
