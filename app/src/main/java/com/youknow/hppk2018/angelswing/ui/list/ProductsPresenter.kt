@@ -1,6 +1,7 @@
 package com.youknow.hppk2018.angelswing.ui.list
 
 import android.view.View
+import com.google.firebase.firestore.DocumentSnapshot
 import com.youknow.hppk2018.angelswing.data.source.ProductDataSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -41,4 +42,24 @@ class ProductsPresenter(
                 }))
     }
 
+    override fun getNextProducts(from: DocumentSnapshot) {
+        view.showProgressBar(View.VISIBLE)
+        disposable.add(productDataSource.getProducts(from)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view.showProgressBar(View.GONE)
+                    if (it == null || it.isEmpty()) {
+                        view.showEmptyView(View.GONE)
+                        view.onProductsLoaded(listOf())
+                    } else {
+                        view.showEmptyView(View.GONE)
+                        view.onProductsLoaded(it)
+                    }
+                }, {
+                    view.showProgressBar(View.GONE)
+                    error("[HPPK] getNextProducts - failed: ${it.message}")
+                    it.printStackTrace()
+                }))
+    }
 }

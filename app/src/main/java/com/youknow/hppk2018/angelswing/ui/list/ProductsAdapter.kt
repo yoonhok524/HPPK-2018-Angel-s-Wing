@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductsAdapter(
         private val context: Context,
-        var products: List<Product> = listOf(),
+        var products: MutableList<Product> = mutableListOf(),
         private val imageDataSource: ImageDataSource = ImageDataSource()
 ) : RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
 

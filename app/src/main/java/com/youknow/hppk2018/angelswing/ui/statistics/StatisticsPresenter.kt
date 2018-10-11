@@ -23,7 +23,7 @@ class StatisticsPresenter(
     }
 
     override fun getChartData() {
-        disposable.add(productDataSource.getProducts()
+        disposable.add(productDataSource.getAllProducts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

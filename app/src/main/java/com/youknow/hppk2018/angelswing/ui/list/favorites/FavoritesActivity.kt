@@ -44,7 +44,7 @@ class FavoritesActivity : AppCompatActivity(), FavoritesContract.View {
     }
 
     override fun onProductsLoaded(products: List<Product>) {
-        mAdapter.products = products
+        mAdapter.products = products.toMutableList()
         mAdapter.notifyDataSetChanged()
     }
 }

@@ -1,5 +1,6 @@
 package com.youknow.hppk2018.angelswing.data.source
 
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.youknow.hppk2018.angelswing.data.model.Product
@@ -9,18 +10,42 @@ import io.reactivex.Single
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
+
 class ProductDataSource : AnkoLogger {
     private val mRef = FirebaseFirestore.getInstance().collection(PRODUCTS)
 
-    fun getProducts() = Single.create<List<Product>> { emitter ->
-        mRef.orderBy("createdAt", Query.Direction.DESCENDING)
-                .get()
+    fun getAllProducts() = Single.create<List<Product>> { emitter ->
+        val baseQuery = mRef.orderBy("createdAt", Query.Direction.DESCENDING)
+        baseQuery.get()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         if (it.result.isEmpty) {
                             emitter.onSuccess(listOf())
                         } else {
                             emitter.onSuccess(it.result.toObjects(Product::class.java))
+                        }
+                    } else if (it.exception != null) {
+                        emitter.onError(it.exception!!)
+                    } else {
+                        emitter.onError(Exception("getChartData failed"))
+                    }
+                }
+    }
+
+    fun getProducts(from: DocumentSnapshot? = null) = Single.create<List<DocumentSnapshot>> { emitter ->
+        val query = if (from == null) {
+            mRef.orderBy("createdAt", Query.Direction.DESCENDING).limit(20)
+        } else {
+            mRef.orderBy("createdAt", Query.Direction.DESCENDING).startAfter(from).limit(20)
+        }
+
+        query.get()
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        if (it.result.isEmpty) {
+                            emitter.onSuccess(listOf())
+                        } else {
+                            emitter.onSuccess(it.result.documents)
                         }
                     } else if (it.exception != null) {
                         emitter.onError(it.exception!!)
