@@ -69,4 +69,7 @@
     <string name="number_of_users">관심 물품 %1$d</string>
     <string name="number_of_employees_interested_in_this_product">임직원 %1$d명이 이 물품에 관심을 갖고 있습니다.</string>
     <string name="my_favorites">관심 물품</string>
+    <string name="search">검색</string>
+    <string name="hint_search">물품 명을 입력하세요.</string>
+    <string name="err_search_keyword_is_empty">검색어를 입력하세요.</string>
 </resources>

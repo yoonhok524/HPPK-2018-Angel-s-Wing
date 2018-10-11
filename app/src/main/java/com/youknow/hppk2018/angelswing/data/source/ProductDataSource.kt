@@ -15,8 +15,8 @@ class ProductDataSource : AnkoLogger {
     private val mRef = FirebaseFirestore.getInstance().collection(PRODUCTS)
 
     fun getAllProducts() = Single.create<List<Product>> { emitter ->
-        val baseQuery = mRef.orderBy("createdAt", Query.Direction.DESCENDING)
-        baseQuery.get()
+        mRef.orderBy("createdAt", Query.Direction.DESCENDING)
+                .get()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         if (it.result.isEmpty) {
@@ -132,6 +132,5 @@ class ProductDataSource : AnkoLogger {
                     }
                 }
     }
-
 
 }

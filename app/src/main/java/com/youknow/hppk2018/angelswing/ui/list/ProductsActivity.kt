@@ -17,6 +17,7 @@ import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
 import com.youknow.hppk2018.angelswing.ui.list.favorites.FavoritesActivity
+import com.youknow.hppk2018.angelswing.ui.list.search.SearchActivity
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
 import com.youknow.hppk2018.angelswing.ui.statistics.StatisticsActivity
 import kotlinx.android.synthetic.main.activity_products.*
@@ -68,6 +69,7 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
+            R.id.search -> startActivity(Intent(this, SearchActivity::class.java))
             R.id.statistics -> startActivity(Intent(this, StatisticsActivity::class.java))
             R.id.favorites -> startActivity(Intent(this, FavoritesActivity::class.java))
         }

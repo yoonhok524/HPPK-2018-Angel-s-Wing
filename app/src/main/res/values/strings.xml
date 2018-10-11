@@ -73,4 +73,7 @@
     <string name="number_of_users">Favorites %1$d</string>
     <string name="number_of_employees_interested_in_this_product">%1$d employees are interested in this product.</string>
     <string name="my_favorites">My Favorites</string>
+    <string name="search">Search</string>
+    <string name="hint_search">Input Keyword</string>
+    <string name="err_search_keyword_is_empty">Please enter search keyword.</string>
 </resources>
