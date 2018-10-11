@@ -43,6 +43,7 @@ class ProductsAdapter(
             val imgRef = imageDataSource.getImageRef(product.imgFileName)
             GlideApp.with(context)
                     .load(imgRef)
+                    .error(R.drawable.ic_unknown)
                     .apply(RequestOptions.bitmapTransform(CircleCrop()))
                     .into(holder.itemView.ivProduct)
         } else {

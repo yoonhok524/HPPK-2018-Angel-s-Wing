@@ -107,7 +107,10 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View, View.OnClickL
             val imgRef = ImageDataSource().getImageRef(mProduct.imgFileName)
             GlideApp.with(this)
                     .load(imgRef)
+                    .error(R.drawable.ic_unknown_72dp)
                     .into(ivProduct)
+        } else {
+            ivProduct.setImageResource(R.drawable.ic_unknown_72dp)
         }
 
         initOptionsMenu()
