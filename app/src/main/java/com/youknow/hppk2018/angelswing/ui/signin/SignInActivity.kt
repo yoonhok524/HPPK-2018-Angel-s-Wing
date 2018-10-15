@@ -117,7 +117,36 @@ class SignInActivity : AppCompatActivity(), AnkoLogger, SignInContract.View {
 
         btnRegister.setOnClickListener {
             info("[HPPK] btnRegister on clicked - email: ${FirebaseAuth.getInstance().currentUser!!.email}")
-            mPresenter.register(etName.text.toString(), etHpAccount.text.toString(), spnLab.selectedItem.toString(), spnPart.selectedItem.toString())
+            val lab = when(spnLab.selectedItem.toString()) {
+                getString(R.string.lab_1) -> "1랩"
+                getString(R.string.lab_2) -> "2랩"
+                getString(R.string.lab_solution) -> "솔루션랩"
+                getString(R.string.group) -> "그룹"
+                else -> "All"
+            }
+
+            val part = when(spnPart.selectedItem.toString()) {
+                getString(R.string.part_chaesukyoung) -> "파트-채수경"
+                getString(R.string.part_choijunyoung) -> "파트-최준영"
+                getString(R.string.part_chotaegyun) -> "파트-조태균"
+                getString(R.string.part_dotaehoi) -> "파트-도대회"
+                getString(R.string.part_hawoohwa) -> "파트-하우화"
+                getString(R.string.part_heonam) -> "파트-허남"
+                getString(R.string.part_jungjintae) -> "파트-정진태"
+                getString(R.string.part_kanghyungjong) -> "파트-강형종"
+                getString(R.string.part_kimbyoungyue) -> "파트-김병유"
+                getString(R.string.part_kimhaengnan) -> "파트-김행난"
+                getString(R.string.part_kimsudong) -> "파트-김수동"
+                getString(R.string.part_kwonyongchan) -> "파트-권용찬"
+                getString(R.string.part_leegeunchul) -> "파트-이근철"
+                getString(R.string.part_leejoongmok) -> "파트-이중목"
+                getString(R.string.part_leekeechang) -> "파트-이기창"
+                getString(R.string.part_mohamad) -> "파트-Mohamad"
+                getString(R.string.part_siminbo) -> "파트-심인보"
+                getString(R.string.part_system_architect) -> "파트-System Architect"
+                else -> "All"
+            }
+            mPresenter.register(etName.text.toString(), etHpAccount.text.toString(), lab, part)
         }
     }
 

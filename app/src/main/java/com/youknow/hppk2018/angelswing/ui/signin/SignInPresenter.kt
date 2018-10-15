@@ -37,6 +37,9 @@ class SignInPresenter(
         view.showInvalidEmail(View.GONE)
 
         view.showProgressBar(View.VISIBLE)
+
+
+
         val user = User(FirebaseAuth.getInstance().currentUser!!.email!!, name, hpAccount, lab, part)
         disposable.add(userDataSource.saveUser(user)
                 .subscribe({

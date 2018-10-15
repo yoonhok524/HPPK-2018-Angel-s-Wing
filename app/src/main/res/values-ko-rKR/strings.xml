@@ -8,6 +8,8 @@
     <string name="lab_2">2랩</string>
     <string name="lab_solution">솔루션랩</string>
     <string name="group">그룹</string>
+    <string name="all">All</string>
+
     <string name="part_hawoohwa">파트-하우화</string>
     <string name="part_leegeunchul">파트-이근철</string>
     <string name="part_leejoongmok">파트-이중목</string>
