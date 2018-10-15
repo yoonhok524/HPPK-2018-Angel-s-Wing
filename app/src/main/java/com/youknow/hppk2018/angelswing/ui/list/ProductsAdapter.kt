@@ -16,12 +16,13 @@ import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
 import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT_ID
 import com.youknow.hppk2018.angelswing.ui.details.DetailsActivity
 import com.youknow.hppk2018.angelswing.utils.getFormattedPrice
+import com.youknow.hppk2018.angelswing.utils.getSaleLocation
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductsAdapter(
         private val context: Context,
-        var products: MutableList<Product> = mutableListOf(),
-        private val imageDataSource: ImageDataSource = ImageDataSource()
+        private val imageDataSource: ImageDataSource = ImageDataSource(),
+        var products: MutableList<Product> = mutableListOf()
 ) : RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
@@ -38,6 +39,7 @@ class ProductsAdapter(
         holder.itemView.tvLblPrice.text = price
         holder.itemView.tvSellerName.text = product.seller.name
         holder.itemView.tvSellerLabPart.text = "${product.seller.lab} | ${product.seller.part}"
+        holder.itemView.tvSalesLocation.text = getSaleLocation(product.seller.part)
 
         if (!TextUtils.isEmpty(product.imgFileName)) {
             val imgRef = imageDataSource.getImageRef(product.imgFileName)

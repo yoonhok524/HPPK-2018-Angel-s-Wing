@@ -9,6 +9,7 @@ data class Product (
         var id: String = "",
         var name: String = "",
         var price: Int = MINIMUM_TARGET_PRICE,
+        var donation: Int = 0,
         var imgFileName: String = "",
         var onSale: Boolean = true,
         val createdAt: Long = System.currentTimeMillis(),

@@ -59,7 +59,7 @@ class ProductDataSource : AnkoLogger {
         mRef.document(productId)
                 .get()
                 .addOnCompleteListener {
-                    if (!it.isSuccessful || it.result == null) {
+                    if (!it.isSuccessful || it.result == null || !it.result.exists()) {
                         emitter.onError(Exception("$productId is not exist"))
                     } else {
                         emitter.onSuccess(it.result.toObject(Product::class.java)!!)
@@ -76,8 +76,8 @@ class ProductDataSource : AnkoLogger {
                 }
     }
 
-    fun delete(product: Product) = Single.create<Boolean> { emitter ->
-        mRef.document(product.id)
+    fun delete(productId: String) = Single.create<Boolean> { emitter ->
+        mRef.document(productId)
                 .delete()
                 .addOnCompleteListener {
                     emitter.onSuccess(it.isSuccessful)

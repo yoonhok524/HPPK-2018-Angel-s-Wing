@@ -72,4 +72,5 @@
     <string name="search">검색</string>
     <string name="hint_search">물품 명을 입력하세요.</string>
     <string name="err_search_keyword_is_empty">검색어를 입력하세요.</string>
+    <string name="sales_booth">판매 부스</string>
 </resources>

@@ -77,11 +77,12 @@ class UserDataSource : AnkoLogger {
                 }
     }
 
-    fun removeFavoriteProduct(userId: String, product: Product) = Single.create<Boolean> { emitter ->
+    fun removeFavoriteProduct(userId: String, productId: String) = Single.create<Boolean> { emitter ->
+        info("[HPPK] removeFavoriteProduct")
         mFirestore.collection(USERS)
                 .document(userId)
                 .collection(FAVORITES)
-                .document(product.id)
+                .document(productId)
                 .delete()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {

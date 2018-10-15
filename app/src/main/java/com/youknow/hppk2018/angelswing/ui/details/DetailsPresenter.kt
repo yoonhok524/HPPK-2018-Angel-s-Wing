@@ -27,8 +27,15 @@ class DetailsPresenter(
                 .subscribe({
                     view.onProductLoaded(it)
                 }, {
-                    view.showMessage(R.string.err_product_not_exist)
-                    view.terminate()
+                    val userEmail = FirebaseAuth.getInstance().currentUser!!.email!!
+                    userDataSource.removeFavoriteProduct(userEmail, productId)
+                            .subscribe({
+                                view.showMessage(R.string.err_product_not_exist)
+                                view.terminate()
+                            }, {
+                                view.showMessage(R.string.err_product_not_exist)
+                                view.terminate()
+                            })
                 }))
     }
 
@@ -61,7 +68,7 @@ class DetailsPresenter(
 
     override fun deleteProduct(product: Product) {
         view.showProgressBar(View.VISIBLE)
-        disposable.add(productDataSource.delete(product)
+        disposable.add(productDataSource.delete(product.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -99,30 +106,30 @@ class DetailsPresenter(
         val favProd = productDataSource.addFavoriteUser(product.id, userId)
         val favUser = userDataSource.addFavoriteProduct(userId, product)
 
-        favProd.mergeWith(favUser).subscribeOn(Schedulers.io())
+        disposable.add(favProd.mergeWith(favUser).subscribeOn(Schedulers.io())
                 .subscribe({
                     if (it) {
                         getFavorites(product.id)
                     }
                 }, {
 
-                })
+                }))
     }
 
     override fun unregisterFavorite(product: Product) {
         val userId = FirebaseAuth.getInstance().currentUser!!.email!!
 
         val favProd = productDataSource.removeFavoriteUser(product.id, userId)
-        val favUser = userDataSource.removeFavoriteProduct(userId, product)
+        val favUser = userDataSource.removeFavoriteProduct(userId, product.id)
 
-        favProd.mergeWith(favUser).subscribeOn(Schedulers.io())
+        disposable.add(favProd.mergeWith(favUser).subscribeOn(Schedulers.io())
                 .subscribe({
                     if (it) {
                         getFavorites(product.id)
                     }
                 }, {
 
-                })
+                }))
     }
 
     override fun unsubscribe() {

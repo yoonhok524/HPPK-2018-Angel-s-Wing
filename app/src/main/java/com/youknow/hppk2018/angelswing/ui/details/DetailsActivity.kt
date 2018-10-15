@@ -19,6 +19,7 @@ import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
 import com.youknow.hppk2018.angelswing.utils.getFormattedPrice
+import com.youknow.hppk2018.angelswing.utils.getSaleLocation
 import kotlinx.android.synthetic.main.activity_details.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
@@ -102,6 +103,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View, View.OnClickL
         tvPrice.text = getFormattedPrice(mProduct.price)
         tvSellerName.text = mProduct.seller.name
         tvSellerLabPart.text = "${mProduct.seller.lab} | ${mProduct.seller.part}"
+        tvSalesLocation.text = getSaleLocation(mProduct.seller.part)
 
         if (!TextUtils.isEmpty(mProduct.imgFileName)) {
             val imgRef = ImageDataSource().getImageRef(mProduct.imgFileName)
