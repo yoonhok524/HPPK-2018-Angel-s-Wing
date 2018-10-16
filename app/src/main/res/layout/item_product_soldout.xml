@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvSoldOut"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/sold_out"
+        android:gravity="center"
+        android:text="@string/sold_out"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvProdName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/tvSellerName"
+        app:layout_constraintEnd_toStartOf="@id/tvLblPrice"
+        app:layout_constraintStart_toEndOf="@id/tvSoldOut"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Product Name" />
+
+    <TextView
+        android:id="@+id/tvSellerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/gray"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@id/tvSellerLabPart"
+        app:layout_constraintStart_toStartOf="@id/tvProdName"
+        app:layout_constraintTop_toBottomOf="@id/tvProdName"
+        tools:text="Mr.Seller" />
+
+    <TextView
+        android:id="@+id/tvSellerLabPart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/gray"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvProdName"
+        app:layout_constraintTop_toBottomOf="@id/tvSellerName"
+        tools:text="1Lab | PID" />
+
+    <TextView
+        android:id="@+id/tvSalesLocation"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/sales_location_soldout"
+        android:gravity="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/tvLblPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="All" />
+
+    <TextView
+        android:id="@+id/tvLblPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tvSalesLocation"
+        app:layout_constraintStart_toStartOf="@id/tvSalesLocation"
+        app:layout_constraintTop_toBottomOf="@id/tvSalesLocation"
+        tools:text="10,000 won" />
+
+</android.support.constraint.ConstraintLayout>
