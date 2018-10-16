@@ -2,11 +2,12 @@ package com.youknow.hppk2018.angelswing.ui.addedit
 
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
+import com.youknow.hppk2018.angelswing.data.exceptions.ProductSaveCanceledException
+import com.youknow.hppk2018.angelswing.data.exceptions.ProductSaveFailureException
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
 import com.youknow.hppk2018.angelswing.data.source.ProductDataSource
 import com.youknow.hppk2018.angelswing.data.source.UserDataSource
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -37,13 +38,13 @@ class AddEditPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view.showProgressBar(View.GONE)
-                    if (it) {
-                        view.terminate()
-                    } else {
-                        view.failedRegisterProduct()
-                    }
+                    view.terminate()
                 }, {
-
+                    it.printStackTrace()
+                    when (it) {
+                        is ProductSaveFailureException -> view.failedRegisterProduct()
+                        is ProductSaveCanceledException -> ""
+                    }
                 }))
     }
 
@@ -54,30 +55,22 @@ class AddEditPresenter(
         disposable.add(userDataSource.getUser(mId)
                 .flatMap { seller ->
                     var imgFileName = "${seller.name}_${System.currentTimeMillis()}.jpg"
-                    val imageUploader = imageDataSource.saveImage(imgBytes, imgFileName)
-
                     val product = Product(name = name, price = price, seller = seller, imgFileName = imgFileName)
-                    info("[HPPK] saveProduct - $product")
 
+                    val imageUploader = imageDataSource.saveImage(imgBytes, imgFileName)
                     val productRegister = productDataSource.saveProduct(product)
-                    productRegister.flatMap {
-                        if (it) {
-                            imageUploader
-                        } else {
-                            Single.create { it.onSuccess(false) }
-                        }
-                    }
+                    imageUploader.flatMap { productRegister }
                 }
                 .subscribe({
                     info("[HPPK] saveProduct - done: $it")
                     view.showProgressBar(View.GONE)
-                    if (it) {
-                        view.terminate()
-                    } else {
-                        view.failedRegisterProduct()
-                    }
+                    view.terminate()
                 }, {
                     it.printStackTrace()
+                    when (it) {
+                        is ProductSaveFailureException -> view.failedRegisterProduct()
+                        is ProductSaveCanceledException -> ""
+                    }
                 }))
     }
 
@@ -93,13 +86,13 @@ class AddEditPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view.showProgressBar(View.GONE)
-                    if (it) {
-                        view.terminate()
-                    } else {
-                        view.failedRegisterProduct()
-                    }
+                    view.terminate()
                 }, {
-
+                    it.printStackTrace()
+                    when (it) {
+                        is ProductSaveFailureException -> view.failedRegisterProduct()
+                        is ProductSaveCanceledException -> ""
+                    }
                 }))
     }
 
@@ -113,24 +106,20 @@ class AddEditPresenter(
                     info("[HPPK] editProduct - $product")
 
                     val imageUploader = imageDataSource.saveImage(imgBytes, product.imgFileName)
-                    productDataSource.saveProduct(product).flatMap {
-                        if (it) {
-                            imageUploader
-                        } else {
-                            Single.create { it.onSuccess(false) }
-                        }
-                    }
+                    val productRegister = productDataSource.saveProduct(product)
+
+                    imageUploader.flatMap { productRegister }
                 }
                 .subscribe({
                     info("[HPPK] editProduct - done: $it")
                     view.showProgressBar(View.GONE)
-                    if (it) {
-                        view.terminate()
-                    } else {
-                        view.failedRegisterProduct()
-                    }
+                    view.terminate()
                 }, {
                     it.printStackTrace()
+                    when (it) {
+                        is ProductSaveFailureException -> view.failedRegisterProduct()
+                        is ProductSaveCanceledException -> ""
+                    }
                 }))
     }
 

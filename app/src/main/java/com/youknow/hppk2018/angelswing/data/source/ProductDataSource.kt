@@ -3,6 +3,7 @@ package com.youknow.hppk2018.angelswing.data.source
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.youknow.hppk2018.angelswing.data.exceptions.*
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.ui.FAVORITES
 import com.youknow.hppk2018.angelswing.ui.PRODUCTS
@@ -67,21 +68,20 @@ class ProductDataSource : AnkoLogger {
                 }
     }
 
-    fun saveProduct(product: Product) = Single.create<Boolean> { emitter ->
+    fun saveProduct(product: Product) = Single.create<Product> { emitter ->
         mRef.document(product.id)
                 .set(product)
-                .addOnCompleteListener {
-                    info("[HPPK] saveProduct - complete: $product")
-                    emitter.onSuccess(it.isSuccessful)
-                }
+                .addOnSuccessListener { emitter.onSuccess(product) }
+                .addOnFailureListener { emitter.onError(ProductSaveFailureException(it)) }
+                .addOnCanceledListener { emitter.onError(ProductSaveCanceledException("Storing a product has been canceled.")) }
     }
 
-    fun delete(productId: String) = Single.create<Boolean> { emitter ->
+    fun delete(productId: String) = Single.create<String> { emitter ->
         mRef.document(productId)
                 .delete()
-                .addOnCompleteListener {
-                    emitter.onSuccess(it.isSuccessful)
-                }
+                .addOnSuccessListener { emitter.onSuccess(productId) }
+                .addOnFailureListener { emitter.onError(ProductDeleteFailureException(it)) }
+                .addOnCanceledListener { emitter.onError(ProductDeleteCanceledException("Deleting a product has been canceled.")) }
     }
 
     fun getFavoriteNumber(productId: String) = Single.create<Int> { emitter ->
@@ -105,32 +105,24 @@ class ProductDataSource : AnkoLogger {
                 }
     }
 
-    fun addFavoriteUser(productId: String, userId: String) = Single.create<Boolean> { emitter ->
+    fun addFavoriteUser(productId: String, userId: String) = Single.create<String> { emitter ->
         mRef.document(productId)
                 .collection(FAVORITES)
                 .document(userId)
                 .set(mapOf(Pair(userId, userId)))
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        emitter.onSuccess(true)
-                    } else {
-                        emitter.onError(Exception("addFavoriteUser failed"))
-                    }
-                }
+                .addOnSuccessListener { emitter.onSuccess(productId) }
+                .addOnFailureListener { emitter.onError(FavoriteSaveFailureException(it)) }
+                .addOnCanceledListener { emitter.onError(FavoriteSaveCanceledException("addFavoriteUser canceled: $productId")) }
     }
 
-    fun removeFavoriteUser(productId: String, userId: String) = Single.create<Boolean> { emitter ->
+    fun removeFavoriteUser(productId: String, userId: String) = Single.create<String> { emitter ->
         mRef.document(productId)
                 .collection(FAVORITES)
                 .document(userId)
                 .delete()
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        emitter.onSuccess(true)
-                    } else {
-                        emitter.onError(Exception("removeFavoriteuser failed"))
-                    }
-                }
+                .addOnSuccessListener { emitter.onSuccess(productId) }
+                .addOnFailureListener { emitter.onError(FavoriteSaveFailureException(it)) }
+                .addOnCanceledListener { emitter.onError(FavoriteSaveCanceledException("removeFavoriteuser canceled: $productId")) }
     }
 
 }
