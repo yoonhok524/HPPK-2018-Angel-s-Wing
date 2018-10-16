@@ -1,5 +1,6 @@
 package com.youknow.hppk2018.angelswing.ui.list
 
+import android.annotation.SuppressLint
 import android.view.View
 import com.google.firebase.firestore.DocumentSnapshot
 import com.youknow.hppk2018.angelswing.data.source.ProductDataSource

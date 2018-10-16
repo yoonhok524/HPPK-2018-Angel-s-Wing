@@ -11,6 +11,8 @@ import com.youknow.hppk2018.angelswing.data.exceptions.ProductSaveFailureExcepti
 import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.source.ProductDataSource
 import com.youknow.hppk2018.angelswing.data.source.UserDataSource
+import com.youknow.hppk2018.angelswing.ui.list.RESULT_CODE_DELETE_PRODUCT
+import com.youknow.hppk2018.angelswing.ui.list.RESULT_CODE_EDIT_PRODUCT
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -27,22 +29,28 @@ class DetailsPresenter(
 ) : DetailsContract.Presenter, AnkoLogger {
 
     override fun getProduct(productId: String) {
+        info("[HPPK] getProduct - $productId")
         disposable.add(productDataSource.getProduct(productId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view.onProductLoaded(it)
                 }, {
-                    val userEmail = FirebaseAuth.getInstance().currentUser!!.email!!
-                    userDataSource.removeFavoriteProduct(userEmail, productId)
-                            .subscribe({
-                                view.showMessage(R.string.err_product_not_exist)
-                                view.terminate()
-                            }, {
-                                view.showMessage(R.string.err_product_not_exist)
-                                view.terminate()
-                            })
+                    removeFavoriteProduct(productId)
                 }))
+    }
+
+    private fun removeFavoriteProduct(productId: String) {
+        info("[HPPK] removeFavoriteProduct - $productId")
+        val userEmail = FirebaseAuth.getInstance().currentUser!!.email!!
+        userDataSource.removeFavoriteProduct(userEmail, productId)
+                .subscribe({
+                    view.showMessage(R.string.err_product_not_exist)
+                    view.terminate()
+                }, {
+                    view.showMessage(R.string.err_product_not_exist)
+                    view.terminate()
+                })
     }
 
     override fun getFavorites(productId: String) {
@@ -78,8 +86,10 @@ class DetailsPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    info("[HPPK] deleteProduct - success: $product")
                     view.showMessage(R.string.msg_delete_success)
-                    view.terminate()
+                    view.terminate(product, RESULT_CODE_DELETE_PRODUCT)
+//                    view.terminate()
                 }, {
                     it.printStackTrace()
                     when (it) {
@@ -95,7 +105,9 @@ class DetailsPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    view.terminate()
+                    info("[HPPK] soldOut - success: $product")
+                    view.terminate(product, RESULT_CODE_EDIT_PRODUCT)
+//                    view.terminate()
                 }, {
                     it.printStackTrace()
                     when (it) {

@@ -6,6 +6,7 @@ interface DetailsContract {
     interface View {
         fun onProductLoaded(product: Product)
         fun showProgressBar(visible: Int)
+        fun terminate(product: Product, resultCode: Int)
         fun terminate()
         fun showMessage(errMsg: Int)
         fun showFavorites(isFavorite: Boolean)

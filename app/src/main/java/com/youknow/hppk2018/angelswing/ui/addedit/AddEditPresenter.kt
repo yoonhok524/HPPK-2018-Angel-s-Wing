@@ -8,6 +8,8 @@ import com.youknow.hppk2018.angelswing.data.model.Product
 import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
 import com.youknow.hppk2018.angelswing.data.source.ProductDataSource
 import com.youknow.hppk2018.angelswing.data.source.UserDataSource
+import com.youknow.hppk2018.angelswing.ui.list.RESULT_CODE_ADD_PRODUCT
+import com.youknow.hppk2018.angelswing.ui.list.RESULT_CODE_EDIT_PRODUCT
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -38,7 +40,7 @@ class AddEditPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view.showProgressBar(View.GONE)
-                    view.terminate()
+                    view.terminate(it, RESULT_CODE_ADD_PRODUCT)
                 }, {
                     it.printStackTrace()
                     when (it) {
@@ -64,7 +66,7 @@ class AddEditPresenter(
                 .subscribe({
                     info("[HPPK] saveProduct - done: $it")
                     view.showProgressBar(View.GONE)
-                    view.terminate()
+                    view.terminate(it, RESULT_CODE_ADD_PRODUCT)
                 }, {
                     it.printStackTrace()
                     when (it) {
@@ -86,7 +88,7 @@ class AddEditPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view.showProgressBar(View.GONE)
-                    view.terminate()
+                    view.terminate(it, RESULT_CODE_EDIT_PRODUCT)
                 }, {
                     it.printStackTrace()
                     when (it) {
@@ -113,7 +115,7 @@ class AddEditPresenter(
                 .subscribe({
                     info("[HPPK] editProduct - done: $it")
                     view.showProgressBar(View.GONE)
-                    view.terminate()
+                    view.terminate(it, RESULT_CODE_EDIT_PRODUCT)
                 }, {
                     it.printStackTrace()
                     when (it) {

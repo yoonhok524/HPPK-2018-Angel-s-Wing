@@ -14,8 +14,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.youknow.hppk2018.angelswing.R
 import com.youknow.hppk2018.angelswing.data.model.Product
+import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT_ID
 import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
+import com.youknow.hppk2018.angelswing.ui.details.DetailsActivity
 import com.youknow.hppk2018.angelswing.ui.list.favorites.FavoritesActivity
 import com.youknow.hppk2018.angelswing.ui.list.search.SearchActivity
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
@@ -26,7 +28,13 @@ import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.yesButton
 
-class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener, AnkoLogger {
+const val PRODUCT = "com.youknow.hppk2018.angelswing.ui.list.PRODUCT"
+const val REQUEST_CODE_ADD_EDIT_PRODUCT = 1300
+const val RESULT_CODE_ADD_PRODUCT = 1301
+const val RESULT_CODE_EDIT_PRODUCT = 1302
+const val RESULT_CODE_DELETE_PRODUCT = 1303
+
+class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClickListener, ProductClickListener, AnkoLogger {
 
     private lateinit var mPresenter: ProductsContract.Presenter
     private lateinit var mAdapter: ProductsAdapter
@@ -39,7 +47,7 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
         setTitle(R.string.product_list)
 
         mPresenter = ProductsPresenter(this)
-        mAdapter = ProductsAdapter(this)
+        mAdapter = ProductsAdapter(this, this)
 
         rvProducts.layoutManager = LinearLayoutManager(this)
         rvProducts.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
@@ -74,6 +82,33 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
             R.id.favorites -> startActivity(Intent(this, FavoritesActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_CODE_ADD_EDIT_PRODUCT) {
+            when (resultCode) {
+                RESULT_CODE_ADD_PRODUCT -> addProduct(data!!.getParcelableExtra(PRODUCT))
+                RESULT_CODE_EDIT_PRODUCT -> editProduct(data!!.getParcelableExtra(PRODUCT))
+                RESULT_CODE_DELETE_PRODUCT -> deleteProduct(data!!.getParcelableExtra(PRODUCT))
+            }
+            mAdapter.notifyDataSetChanged()
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun addProduct(product: Product) {
+        mAdapter.products.add(0, product)
+    }
+
+    private fun editProduct(product: Product) {
+        val originProduct = mAdapter.products.find { it.id == product.id }
+        val index = mAdapter.products.indexOf(originProduct)
+        mAdapter.products[index] = product
+    }
+
+    private fun deleteProduct(product: Product) {
+        mAdapter.products.remove(product)
     }
 
     override fun onStop() {
@@ -122,8 +157,12 @@ class ProductsActivity : AppCompatActivity(), ProductsContract.View, View.OnClic
                 noButton {}
             }.show()
         } else {
-            startActivity(Intent(this, AddEditActivity::class.java))
+            startActivityForResult(Intent(this, AddEditActivity::class.java), REQUEST_CODE_ADD_EDIT_PRODUCT)
         }
+    }
+
+    override fun onClickProduct(product: Product) {
+        startActivityForResult(Intent(this, DetailsActivity::class.java).putExtra(KEY_PRODUCT_ID, product.id), REQUEST_CODE_ADD_EDIT_PRODUCT)
     }
 
     private fun isNeedSignIn() = FirebaseAuth.getInstance().currentUser == null || !PreferenceManager.getDefaultSharedPreferences(this).contains(KEY_USER)

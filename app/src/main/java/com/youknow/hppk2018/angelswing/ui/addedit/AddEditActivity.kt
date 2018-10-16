@@ -21,6 +21,7 @@ import com.youknow.hppk2018.angelswing.data.source.ImageDataSource
 import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT
 import com.youknow.hppk2018.angelswing.ui.MODE_EDIT
 import com.youknow.hppk2018.angelswing.ui.MODE_NEW
+import com.youknow.hppk2018.angelswing.ui.list.PRODUCT
 import org.jetbrains.anko.AnkoLogger
 
 
@@ -102,7 +103,8 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View, View.OnClickL
         progressBar.visibility = visibility
     }
 
-    override fun terminate() {
+    override fun terminate(product: Product, resultCode: Int) {
+        setResult(resultCode, Intent().putExtra(PRODUCT, product))
         finish()
     }
 

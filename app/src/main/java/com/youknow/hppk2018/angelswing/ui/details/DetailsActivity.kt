@@ -17,6 +17,7 @@ import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT
 import com.youknow.hppk2018.angelswing.ui.KEY_PRODUCT_ID
 import com.youknow.hppk2018.angelswing.ui.KEY_USER
 import com.youknow.hppk2018.angelswing.ui.addedit.AddEditActivity
+import com.youknow.hppk2018.angelswing.ui.list.PRODUCT
 import com.youknow.hppk2018.angelswing.ui.signin.SignInActivity
 import com.youknow.hppk2018.angelswing.utils.getFormattedPrice
 import com.youknow.hppk2018.angelswing.utils.getSaleLocation
@@ -27,14 +28,13 @@ import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
 class DetailsActivity : AppCompatActivity(), DetailsContract.View, View.OnClickListener {
-
     private lateinit var mPresenter: DetailsPresenter
-    private lateinit var mProduct: Product
 
+    private lateinit var mProduct: Product
     private lateinit var mMenuEdit: MenuItem
+
     private lateinit var mMenuDelete: MenuItem
     private lateinit var mMenuSoldout: MenuItem
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
@@ -62,6 +62,11 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View, View.OnClickL
 
     override fun showProgressBar(visible: Int) {
         progressBar.visibility = visible
+    }
+
+    override fun terminate(product: Product, resultCode: Int) {
+        setResult(resultCode, Intent().putExtra(PRODUCT, product))
+        finish()
     }
 
     override fun terminate() {

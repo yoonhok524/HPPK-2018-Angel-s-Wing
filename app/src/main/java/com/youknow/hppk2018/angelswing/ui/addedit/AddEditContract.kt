@@ -6,7 +6,7 @@ import com.youknow.hppk2018.angelswing.data.model.Product
 interface AddEditContract {
     interface View {
         fun showProgressBar(visibility: Int)
-        fun terminate()
+        fun terminate(product: Product, resultCode: Int)
         fun failedRegisterProduct()
 
     }

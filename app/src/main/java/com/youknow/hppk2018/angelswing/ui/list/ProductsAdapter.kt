@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductsAdapter(
         private val context: Context,
+        private val productClickListener: ProductClickListener,
         private val imageDataSource: ImageDataSource = ImageDataSource(),
         var products: MutableList<Product> = mutableListOf()
 ) : RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
@@ -52,10 +53,7 @@ class ProductsAdapter(
             holder.itemView.ivProduct.setImageResource(R.drawable.ic_unknown)
         }
 
-        holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context, DetailsActivity::class.java)
-                    .putExtra(KEY_PRODUCT_ID, product.id))
-        }
+        holder.itemView.setOnClickListener { productClickListener.onClickProduct(product) }
     }
 
     class ProductHolder(view: View) : RecyclerView.ViewHolder(view)
